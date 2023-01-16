@@ -1,8 +1,10 @@
 # PERSONAL
 .idea/
 events/*
-models/
-packages/
+!events/README.md
+models/*/slices/
+packages/*
+!packages/README.md
 
 lambda_code/.idea/
 
