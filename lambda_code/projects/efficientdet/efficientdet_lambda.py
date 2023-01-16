@@ -14,7 +14,6 @@ constants = importlib.import_module(generic_constants.CONSTANTS_MODULE, package=
 def lambda_handler(event, context):
     number_of_slices = event['number_of_slices']
     slice_index = event['next_slice_index']
-    payload_index = event['next_payload_index']
     inputs = event['inputs']
     outputs = event['outputs']
 
@@ -34,17 +33,16 @@ def lambda_handler(event, context):
             images.append(np.array(Image.open(f)))
         img = np.array(images, dtype='uint8')
         ### END EFFICIENTDET
-        first_slice.run(img, outputs)
+        first_slice.run(img, slice_index, outputs)
     else:
         s3_manager.download_dictionary()
-        other_slices.run(slice_index, payload_index, inputs, outputs)
+        other_slices.run(slice_index, inputs, outputs)
 
     s3_manager.upload_dictionary_to_s3()
 
     s3_manager.upload_payloads_to_s3()
 
     next_slice_index = slice_index + 1
-    next_payload_index = json_manager.get_next_payload_index()
 
     if next_slice_index == constants.NUMBER_OF_SLICES:
         ### MOBILEDET:
@@ -54,7 +52,7 @@ def lambda_handler(event, context):
         output_event = {"keep_going": False, "result": result[0][0]}
     else:
         output_event = {"keep_going": True, "number_of_slices": number_of_slices, "next_slice_index": next_slice_index,
-                        "next_payload_index": next_payload_index, "inputs": inputs, "outputs": outputs}
+                        "inputs": inputs, "outputs": outputs}
 
     # call('rm -rf /tmp/*', shell=True)
     # call('rm -rf /tmp/..?* /tmp/.[!.]* /tmp/*', shell=True)

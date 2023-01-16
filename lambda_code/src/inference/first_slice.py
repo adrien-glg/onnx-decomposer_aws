@@ -17,9 +17,11 @@ def get_results(input_file):
     return results
 
 
-def run(input_file, output_lists):
+def run(input_file, slice_index, output_lists):
     results = get_results(input_file)
 
     for i in range(len(results)):
         result = results[i]
-        json_manager.payload_to_jsonfile(output_lists[0][i], result)
+        json_manager.payload_to_jsonfile(slice_index, output_lists[0][i], result)
+
+    json_manager.set_next_payload_index(0)
