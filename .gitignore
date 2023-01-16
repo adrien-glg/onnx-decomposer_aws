@@ -1,6 +1,6 @@
 # PERSONAL
 .idea/
-events/
+events/*
 models/
 packages/
 
