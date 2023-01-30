@@ -1,3 +1,3 @@
 ### FILE TO BE CONFIGURED MANUALLY ###
 
-PROJECT_NAME = "mobiledet"
+STATE_MACHINE_SUFFIX = "StateMachine1"

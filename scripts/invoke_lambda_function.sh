@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source config.sh
+source constants.sh
 
 if [[ $# -eq 0 ]]
 then

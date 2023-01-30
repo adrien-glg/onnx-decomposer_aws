@@ -3,6 +3,7 @@
 #DO NOT FORGET TO RUN THIS SCRIPT INSIDE A PYTHON VENV !!!
 
 source config.sh
+source constants.sh
 
 ########### INITIALIZATION ###########
 #if [[ -d "./${SLICE_PATH}" ]]; then
