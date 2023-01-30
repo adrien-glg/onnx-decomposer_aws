@@ -28,8 +28,8 @@ Create the deployment Lambda package:
 ./make_lambda_package.sh
 ```
 
-Only if needed, once the package has been created a first time, you can easily apply code modifications with:       
-<small>NB: This command's purpose is only to save some time compared to making the Lambda package from scratch again.</small>
+Only if needed, once the package has been created a first time, you can easily apply code modifications with:                
+<sub>NB: This command's purpose is only to save some time compared to making the Lambda package from scratch again.</sub>
 ```bash
 ./modify_code_only.sh
 ```
