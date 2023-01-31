@@ -8,7 +8,7 @@ constants = importlib.import_module(generic_constants.CONSTANTS_MODULE, package=
 FUNCTION_NAME = constants.PROJECT_NAME + "_" + str(constants.NUMBER_OF_SLICES) + "_slices"
 STATE_MACHINE_NAME = FUNCTION_NAME + "_" + sfn_config.STATE_MACHINE_SUFFIX
 EVENT0 = "../events/event0.json"
-DEPLOYMENT_OUTPUT = "outputs/deployment_output.txt"
-EXECUTION_OUTPUT = "outputs/execution_output.txt"
-EXECUTION_DESCRIPTION = "outputs/execution_description.txt"
+STATE_MACHINE_ARN_FILE="outputs/state_machine_arn.txt"
+EXECUTION_ARN_FILE="outputs/execution_arn.txt"
+
 

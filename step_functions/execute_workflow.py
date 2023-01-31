@@ -12,6 +12,6 @@ response = sfn_client.start_execution(
     input=json.dumps({})
 )
 
-utils.save_to_file(response, sfn_constants.EXECUTION_OUTPUT)
+utils.save_to_file(response['executionArn'], sfn_constants.EXECUTION_ARN_FILE)
 
 print(response)

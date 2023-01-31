@@ -81,7 +81,6 @@ python3 execute_workflow.py
 
 Get results:
 ```bash
-python3 describe_workflow_execution.py
 python3 get_results.py
 ```
 

@@ -7,6 +7,7 @@ import utils
 sfn_client = boto3.client('stepfunctions')
 lambda_client = boto3.client('lambda')
 iam_client = boto3.client('iam')
+logs_client = boto3.client('logs')
 
 with open(sfn_constants.EVENT0) as event0_file:
     event0_data = json.load(event0_file)
@@ -50,12 +51,36 @@ asl_definition = {
     }
   }
 }
+
+# log_response = logs_client.create_log_group(
+#     logGroupName='/aws/vendedlogs/states/' + sfn_constants.STATE_MACHINE_NAME + '-Logs'
+# )
+
 response = sfn_client.create_state_machine(
     name=sfn_constants.STATE_MACHINE_NAME,
     definition=json.dumps(asl_definition),
     roleArn=role['Role']['Arn']
 )
 
-utils.save_to_file(response, sfn_constants.DEPLOYMENT_OUTPUT)
+# response = sfn_client.create_state_machine(
+#     name=sfn_constants.STATE_MACHINE_NAME,
+#     definition=json.dumps(asl_definition),
+#     roleArn=role['Role']['Arn'],
+#     type='EXPRESS',
+#     loggingConfiguration={
+#         'level': 'ALL',
+#         'includeExecutionData': True,
+#         'destinations': [
+#             {
+#                 'cloudWatchLogsLogGroup': {
+#                     'logGroupArn': '/aws/vendedlogs/states/' + sfn_constants.STATE_MACHINE_NAME + '-Logs'
+#                 }
+#             },
+#         ]
+#     }
+# )
 
+utils.save_to_file(response['stateMachineArn'], sfn_constants.STATE_MACHINE_ARN_FILE)
+
+# print(log_response)
 print(response)

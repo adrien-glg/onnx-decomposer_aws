@@ -1,3 +1,3 @@
 ## `outputs` directory
 
-Workflow deployment and execution outputs will be saved to this directory.
+Outputs related to workflow deployments and executions will be saved to this directory.
