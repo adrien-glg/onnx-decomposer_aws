@@ -79,8 +79,11 @@ Execute the workflow:
 python3 execute_workflow.py
 ```
 
-Get results:
-```bash
-python3 get_results.py
-```
+[//]: # (Get results:)
+
+[//]: # (```bash)
+
+[//]: # (python3 get_results.py)
+
+[//]: # (```)
 

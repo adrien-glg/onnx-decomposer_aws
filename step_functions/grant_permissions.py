@@ -15,13 +15,29 @@ role_policy = {
     }
   ]
 }
+
+# cloudwatch_role_policy = {
+#     "Sid": "VisualEditor0",
+#     "Effect": "Allow",
+#     "Principal": {
+#       "Service": "states.amazonaws.com"
+#     },
+#     "Action": "cloudwatch:*",
+# }
+
 response = iam.create_role(
-  RoleName='StepFunctionLambdaBasicExecution',
+  RoleName='StepFunctionsExecutionWithLogs',
   AssumeRolePolicyDocument=json.dumps(role_policy),
 )
-attach_policy_response = iam.attach_role_policy(
-    RoleName='StepFunctionLambdaBasicExecution',
+attach_lambda_policy_response = iam.attach_role_policy(
+    RoleName='StepFunctionsExecutionWithLogs',
     PolicyArn='arn:aws:iam::aws:policy/service-role/AWSLambdaRole'
 )
+attach_cloudwatch_policy_response = iam.attach_role_policy(
+    RoleName='StepFunctionsExecutionWithLogs',
+    PolicyArn='arn:aws:iam::aws:policy/CloudWatchFullAccess'
+)
+
 print(response)
-print(attach_policy_response)
+print(attach_lambda_policy_response)
+print(attach_cloudwatch_policy_response)

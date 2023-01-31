@@ -15,7 +15,7 @@ with open(sfn_constants.EVENT0) as event0_file:
 function = lambda_client.get_function(
     FunctionName=sfn_constants.FUNCTION_NAME
 )
-role = iam_client.get_role(RoleName='StepFunctionLambdaBasicExecution')
+role = iam_client.get_role(RoleName='StepFunctionsExecutionWithLogs')
 function_arn = function['Configuration']['FunctionArn']
 asl_definition = {
   "Comment": sfn_constants.STATE_MACHINE_NAME,
@@ -52,35 +52,42 @@ asl_definition = {
   }
 }
 
-# log_response = logs_client.create_log_group(
-#     logGroupName='/aws/vendedlogs/states/' + sfn_constants.STATE_MACHINE_NAME + '-Logs'
+try:
+    log_response = logs_client.create_log_group(
+        logGroupName='/aws/vendedlogs/states/' + sfn_constants.STATE_MACHINE_NAME + '-Logs'
+    )
+except:
+    pass
+
+log_group_description = logs_client.describe_log_groups(
+    logGroupNamePattern=sfn_constants.STATE_MACHINE_NAME
+)
+log_group_arn = log_group_description['logGroups'][0]['arn']
+
+# response = sfn_client.create_state_machine(
+#     name=sfn_constants.STATE_MACHINE_NAME,
+#     definition=json.dumps(asl_definition),
+#     roleArn=role['Role']['Arn']
 # )
 
 response = sfn_client.create_state_machine(
     name=sfn_constants.STATE_MACHINE_NAME,
     definition=json.dumps(asl_definition),
-    roleArn=role['Role']['Arn']
+    roleArn=role['Role']['Arn'],
+    type='EXPRESS',
+    loggingConfiguration={
+        'level': 'ALL',
+        'includeExecutionData': True,
+        'destinations': [
+            {
+                'cloudWatchLogsLogGroup': {
+                    'logGroupArn': log_group_arn
+                }
+            },
+        ]
+    }
 )
-
-# response = sfn_client.create_state_machine(
-#     name=sfn_constants.STATE_MACHINE_NAME,
-#     definition=json.dumps(asl_definition),
-#     roleArn=role['Role']['Arn'],
-#     type='EXPRESS',
-#     loggingConfiguration={
-#         'level': 'ALL',
-#         'includeExecutionData': True,
-#         'destinations': [
-#             {
-#                 'cloudWatchLogsLogGroup': {
-#                     'logGroupArn': '/aws/vendedlogs/states/' + sfn_constants.STATE_MACHINE_NAME + '-Logs'
-#                 }
-#             },
-#         ]
-#     }
-# )
 
 utils.save_to_file(response['stateMachineArn'], sfn_constants.STATE_MACHINE_ARN_FILE)
 
-# print(log_response)
 print(response)
