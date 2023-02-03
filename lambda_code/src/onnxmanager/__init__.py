@@ -1,6 +1,5 @@
-import importlib
-from src import generic_constants
-constants = importlib.import_module(generic_constants.CONSTANTS_MODULE, package=None)
+from src import constants
+
 
 MODEL_PATH = constants.ONNX_MODEL
 JSON_ROOT_PATH_S3 = "data/"

@@ -1,3 +1,0 @@
-### FILE TO BE CONFIGURED MANUALLY ###
-
-PROJECT_NAME = "mobiledet"

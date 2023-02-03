@@ -1,10 +1,7 @@
 import onnx
 
 from src import onnxmanager
-
-import importlib
-from src import generic_constants
-constants = importlib.import_module(generic_constants.CONSTANTS_MODULE, package=None)
+from src import constants
 
 
 # GET ALL OUTPUTS FROM THE FULL MODEL

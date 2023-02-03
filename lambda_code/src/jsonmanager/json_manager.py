@@ -4,10 +4,7 @@ import pathlib
 
 from src import onnxmanager
 from src.s3manager import s3_manager
-
-import importlib
-from src import generic_constants
-constants = importlib.import_module(generic_constants.CONSTANTS_MODULE, package=None)
+from src import constants
 
 
 next_payload_index = 0

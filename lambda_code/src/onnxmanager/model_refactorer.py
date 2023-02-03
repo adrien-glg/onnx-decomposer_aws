@@ -2,10 +2,7 @@ import numpy as np
 import onnx
 
 from src.onnxmanager import model_extractor
-
-import importlib
-from src import generic_constants
-constants = importlib.import_module(generic_constants.CONSTANTS_MODULE, package=None)
+from src import constants
 
 
 def add_model_output(loaded_model, model_path, output_name):
