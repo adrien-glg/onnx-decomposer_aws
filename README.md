@@ -4,13 +4,13 @@
 
 First, you need to configure the 2 following files as needed:
 - `lambda_code/project_name.py`
-- `scripts/config.sh`
+- `lambda_scripts/project.config`
 
 ## Lambda Function Deployment
 
 Change directory:
 ```bash
-cd scripts
+cd lambda_scripts
 ```
 
 Create a Python Virtual Environment (venv):
@@ -21,7 +21,7 @@ Create a Python Virtual Environment (venv):
 You need to activate the virtual environment with `source venv/bin/activate` for the next steps.       
 You can deactivate the virtual environment with `deactivate`.
 
-Before creating the Lambda package, make sure `scripts/config.sh` and `lambda_code/project_name.py` have been configured correctly.
+Before creating the Lambda package, make sure `lambda_scripts/project.config` and `lambda_code/project_name.py` have been configured correctly.
 
 Create the deployment Lambda package:
 ```bash
@@ -63,7 +63,7 @@ Create a role for Step Functions operations (you only need to run this command o
 ```bash
 python3 grant_permissions.py
 ```
-If you get an error warning about `Role with name StepFunctionLambdaBasicExecution already exists.`, you can ignore it.
+If you get an error warning about `"Role with name StepFunctionLambdaBasicExecution already exists"`, you can ignore it.
 
 Before deployment, you need to configure the following file as needed:
 - `step_functions/sfn_config.py`

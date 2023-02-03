@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source config.sh
+source project.config
 source constants.sh
 
 aws lambda delete-function --function-name ${FUNCTION_NAME}

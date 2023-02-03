@@ -1,11 +1,11 @@
 #!/bin/bash
 
-source config.sh
+source project.config
 source constants.sh
 
 if [[ $# -eq 0 ]]
 then
-    echo "script usage: $0 [-l layer_number]"
+    echo "script usage: $0 -l <layer_index>"
     exit 1
 fi
 

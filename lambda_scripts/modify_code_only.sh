@@ -2,7 +2,7 @@
 
 # USE THIS SCRIPT TO MODIFY CODE ONLY (INSIDE ZIP PACKAGE), AFTER RUNNING ./make_lambda_package.sh AT LEAST ONCE
 
-source config.sh
+source project.config
 source constants.sh
 
 unzip ${ZIP_PACKAGE_PATH} -d ${PACKAGE_PATH}/package
