@@ -3,7 +3,7 @@
 ## Init Configuration
 
 First, you need to configure the 2 following files as needed:
-- `lambda_code/project_name.py`
+- `lambda_code/projectname_config.ini`
 - `lambda_scripts/project.config`
 
 ## Lambda Function Deployment
@@ -21,7 +21,8 @@ Create a Python Virtual Environment (venv):
 You need to activate the virtual environment with `source venv/bin/activate` for the next steps.       
 You can deactivate the virtual environment with `deactivate`.
 
-Before creating the Lambda package, make sure `lambda_scripts/project.config` and `lambda_code/project_name.py` have been configured correctly.
+Before creating the Lambda package, make sure `lambda_code/projectname_config.ini` and 
+`lambda_scripts/project.config` have been configured correctly.
 
 Create the deployment Lambda package:
 ```bash
