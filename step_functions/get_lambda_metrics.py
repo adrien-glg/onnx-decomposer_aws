@@ -2,35 +2,36 @@ import boto3
 from datetime import datetime, timedelta
 import pprint
 
+import sfn_constants
+import utils
 
-cloudwatch_client = boto3.client('cloudwatch')
+logs_client = boto3.client('logs')
 
+def get_logs():
+    yesterday = datetime.now() - timedelta(days=1)
 
-# response = cloudwatch_client.list_metrics(
-#         Namespace='AWS/Lambda'
-# )
+    response = logs_client.filter_log_events(
+        logGroupName='/aws/lambda/' + sfn_constants.FUNCTION_NAME,
+        logStreamNamePrefix=utils.get_today_date(),
+        filterPattern='REPORT',
+    )
 
-yesterday = datetime.now() - timedelta(days=1)
+    events = response['events']
 
-response = cloudwatch_client.get_metric_data(
-    MetricDataQueries=[
-        {
-            'Id': 'id_586970858',
-            'MetricStat': {
-                'Metric': {
-                    'Namespace': 'AWS/Lambda',
-                    'MetricName': 'Duration',
-                },
-                'Period': 3600,
-                'Stat': 'TM(0%:100%)',
-            },
-        },
-    ],
-    StartTime=yesterday,
-    EndTime=datetime.now(),
-)
+    for i in range(len(events)):
+        print("\n---------------------------------\n")
 
-pprint.pprint(response)
+        message = events[i]['message']
 
+        pprint.pprint(message)
 
+        print("\nDURATION:")
+        print((utils.get_duration(message)))
 
+        print("\nBILLED DURATION:")
+        print((utils.get_duration(message, billed=True)))
+
+        print("\nMAX MEMORY USED:")
+        print((utils.get_memory_used(message)))
+
+get_logs()

@@ -77,7 +77,7 @@ python3 grant_permissions.py
 If you get an error warning about `"Role with name StepFunctionLambdaBasicExecution already exists"`, you can ignore it.
 
 Before deployment, you need to configure the following file as needed:
-- `step_functions/sfn_config.py`
+- `step_functions/sfn_config.ini`
 
 
 Deploy the workflow:
