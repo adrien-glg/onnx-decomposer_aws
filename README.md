@@ -1,12 +1,22 @@
 # onnx-decomposer_aws
 
-## Init Configuration
+## Package size conformity check
 
-First, you need to configure the 2 following files as needed:
+To perform package size conformity check, please follow these steps: 
+[README_packagesize.md](README_packagesize.md)
+
+## Initial configuration
+
+First, make sure you have created the folder `lambda_code/projects/<projectname>` with these 3 project configuration files:
+- `lambda_code/projects/<projectname>/<projectname>_config.ini`
+- `lambda_code/projects/<projectname>/<projectname>_lambda.py`
+- `lambda_code/projects/<projectname>/<projectname>_lambda_requirements.txt`
+
+Then, you need to configure the following 2 files as needed:
 - `lambda_code/projectname_config.ini`
 - `lambda_scripts/project.config`
 
-## Lambda Function Deployment
+## Lambda function deployment
 
 Change directory:
 ```bash
@@ -40,7 +50,7 @@ Deploy the Lambda function on AWS:
 ./deploy_lambda_function.sh
 ```
 
-## Manual Execution
+## Manual execution
 
 Before invoking the Lambda function, make sure you have run the code locally, so that `events/event0.json` has been generated correctly.   
 
@@ -50,11 +60,11 @@ To invoke the Lambda function (for the first layer, layer_index is `0`):
 ```
 Run the command above as many times as there are layers.
 
-## Automated Execution with AWS Step Functions
+## Automated execution with AWS Step Functions
 
 Before execution, make sure you have run the code locally, so that `events/event0.json` has been generated correctly. 
 
-From `root` (`onnx-decomposer_aws` folder), run the following command:
+From the `root` of the project (`onnx-decomposer_aws` folder), run the following command:
 ```bash
 export PYTHONPATH=$PYTHONPATH:"$PWD":"$PWD/lambda_code"
 cd step_functions

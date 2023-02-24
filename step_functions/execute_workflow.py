@@ -7,7 +7,7 @@ sfn_client = boto3.client('stepfunctions')
 
 state_machine_arn = utils.get_state_machine_arn()
 
-print("Please wait while execution is running...")
+print("Please wait while execution is running...\n")
 
 response = sfn_client.start_sync_execution(
     stateMachineArn=state_machine_arn,
@@ -16,4 +16,11 @@ response = sfn_client.start_sync_execution(
 
 utils.save_to_file(response['executionArn'], sfn_constants.EXECUTION_ARN_FILE)
 
-print(response['output'])
+if response['status'] == 'FAILED':
+    print(response)
+    print("\nExecution has failed")
+elif response['status'] == 'SUCCEEDED':
+    print(response['output'])
+    print("\nExecution has succeeded")
+else:
+    print(response)
