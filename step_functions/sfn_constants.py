@@ -17,3 +17,12 @@ STATE_MACHINE_NAME = FUNCTION_NAME + "_" + STATE_MACHINE_SUFFIX
 EVENT0 = "../events/event0.json"
 STATE_MACHINE_ARN_FILE="outputs/state_machine_arn.txt"
 EXECUTION_ARN_FILE="outputs/execution_arn.txt"
+
+# METRICS
+METRICS_FOLDER = "metrics/" + PROJECT_NAME + "/"
+METRICS_FILE=METRICS_FOLDER + FUNCTION_NAME + '.csv'
+DURATION_TAG = 'Duration (ms)'
+BILLED_DURATION_TAG = 'Billed duration (ms)'
+USED_MEMORY_TAG = 'Max memory used (MB)'
+CSV_HEADERS = ['Lambda function', 'Execution number', DURATION_TAG, BILLED_DURATION_TAG, USED_MEMORY_TAG]
+

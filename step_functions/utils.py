@@ -42,7 +42,7 @@ def get_duration(message, billed=False):
 
     return duration, unit
 
-def get_memory_used(message):
+def get_used_memory(message):
     term = 'Max Memory Used: '
     start_index = message.find(term) + len(term)
     end_term = '\t'

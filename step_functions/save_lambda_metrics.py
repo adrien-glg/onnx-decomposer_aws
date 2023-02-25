@@ -1,17 +1,15 @@
 import csv
+import os
 
-header = ['name', 'area', 'country_code2', 'country_code3']
-data = [
-    ['Albania', 28748, 'AL', 'ALB'],
-    ['Algeria', 2381741, 'DZ', 'DZA'],
-    ['American Samoa', 199, 'AS', 'ASM'],
-    ['Andorra', 468, 'AD', 'AND'],
-    ['Angola', 1246700, 'AO', 'AGO']
-]
+import get_lambda_metrics
+import sfn_constants
 
-header = ['lambda_function', 'duration_ms', 'billed_duration_ms', 'max_memory_used_MB']
+metrics = get_lambda_metrics.get_metrics()[0]
 
-with open('logs/logs.csv', 'w', encoding='UTF8', newline='') as f:
+if not os.path.exists(sfn_constants.METRICS_FOLDER):
+    os.mkdir(sfn_constants.METRICS_FOLDER)
+
+with open(sfn_constants.METRICS_FILE, 'w', encoding='UTF8', newline='') as f:
     writer = csv.writer(f)
-    writer.writerow(header)
-    writer.writerows(data)
+    writer.writerow(sfn_constants.CSV_HEADERS)
+    writer.writerows(metrics)
