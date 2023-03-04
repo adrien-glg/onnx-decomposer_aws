@@ -1,5 +1,6 @@
 import boto3
 import json
+import time
 
 import sfn_constants
 import utils
@@ -56,6 +57,7 @@ try:
     log_response = logs_client.create_log_group(
         logGroupName='/aws/vendedlogs/states/' + sfn_constants.STATE_MACHINE_NAME + '-Logs'
     )
+    time.sleep(1)
 except:
     pass
 

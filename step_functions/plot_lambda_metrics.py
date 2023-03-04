@@ -10,14 +10,13 @@ def get_csv_files():
 
 def get_plot_data(header_index):
     X, Y = [], []
-
     csv_files = get_csv_files()
 
     for i in range(len(csv_files)):
         with open(sfn_constants.METRICS_FOLDER + csv_files[i], 'r') as csvfile:
             lines = csv.reader(csvfile, delimiter=',')
-            headers = next(lines)
             x, y = [], []
+            next(lines)
             for row in lines:
                 x += [int(row[1])]
                 y += [float(row[header_index])]
@@ -30,10 +29,11 @@ def plot_duration():
     duration_index = sfn_constants.CSV_HEADERS.index(sfn_constants.DURATION_TAG)
     X, Y = get_plot_data(duration_index)
     csv_files = get_csv_files()
+
     for i in range(len(csv_files)):
         plt.subplot(1, 2, duration_index - 1)
-        # plt.plot(x, y, color='g', linestyle='dashed', marker='o', label="Weather Data")
         plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
+
     plt.xticks(range(X[-1][0], X[-1][-1]+1))
     plt.xlabel(sfn_constants.CSV_HEADERS[1])
     plt.ylabel(sfn_constants.DURATION_TAG)
@@ -46,10 +46,11 @@ def plot_used_memory():
     used_memory_index = sfn_constants.CSV_HEADERS.index(sfn_constants.USED_MEMORY_TAG)
     X, Y = get_plot_data(used_memory_index)
     csv_files = get_csv_files()
+
     for i in range(len(csv_files)):
         plt.subplot(1, 2, used_memory_index - 2)
-        # plt.plot(x, y, color='g', linestyle='dashed', marker='o', label="Weather Data")
         plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
+
     plt.xticks(range(X[-1][0], X[-1][-1]+1))
     plt.xlabel(sfn_constants.CSV_HEADERS[1])
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)

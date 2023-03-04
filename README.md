@@ -98,3 +98,13 @@ python3 execute_workflow.py
 
 [//]: # (```)
 
+## Metrics
+
+```bash
+python3 save_lambda_metrics.py
+```
+
+```bash
+python3 plot_lambda_metrics.py
+```
+

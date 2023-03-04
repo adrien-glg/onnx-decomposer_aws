@@ -14,7 +14,7 @@ def get_metrics():
         logGroupName='/aws/lambda/' + sfn_constants.FUNCTION_NAME,
         #logStreamNamePrefix=utils.get_today_date(),
         # DO NOT FORGET TO FIX THIS, WHAT DATE SHOULD I KEEP ETC?? START TIME? END TIME?
-        logStreamNamePrefix="2023/02/25",
+        logStreamNamePrefix="2023/03/04",
         filterPattern='REPORT',
     )
 
@@ -43,9 +43,9 @@ def print_metrics(metrics_list):
     print("LAMBDA FUNCTION: " + sfn_constants.FUNCTION_NAME + "\n")
     for i in range(len(metrics_list)):
         print("EXECUTION NUMBER: " + str(metrics_list[i][1]))
-        print("DURATION: " + str(metrics_list[i][2]))
-        print("BILLED DURATION: " + str(metrics_list[i][3]))
-        print("MAX MEMORY USED: " + str(metrics_list[i][4]))
+        print("DURATION:         " + str(metrics_list[i][2][0]) + " " + str(metrics_list[i][2][1]))
+        print("BILLED DURATION:  " + str(metrics_list[i][3][0]) + " " + str(metrics_list[i][3][1]))
+        print("MAX MEMORY USED:  " + str(metrics_list[i][4][0]) + " " + str(metrics_list[i][4][1]))
         if (i + 1) < len(metrics_list):
             print("-----------------------------------")
 
