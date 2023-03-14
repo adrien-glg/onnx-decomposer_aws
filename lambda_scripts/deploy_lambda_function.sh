@@ -4,6 +4,8 @@ source project.config
 source constants.sh
 
 echo "FUNCTION:" ${FUNCTION_NAME}
+echo "EXECUTION_TIMEOUT:" ${EXECUTION_TIMEOUT}"s"
+echo "FUNCTION_MEMORY:" ${FUNCTION_MEMORY}"MB"
 
 aws lambda delete-function --function-name ${FUNCTION_NAME}
 

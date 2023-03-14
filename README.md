@@ -54,7 +54,9 @@ Deploy the Lambda function on AWS:
 
 ## Manual execution
 
-Before invoking the Lambda function, make sure you have run the code locally, so that `events/event0.json` has been generated correctly.   
+Before invoking the Lambda function, make sure you have run the code locally.
+A local execution will generate `events/event0.json` and will upload the correct ONNX slices to AWS S3.     
+IMPORTANT: Repeat the above step every time you change the project or the number of slices.
 
 To invoke the Lambda function (for the first layer, layer_index is `0`):
 ```bash
@@ -64,7 +66,9 @@ Run the command above as many times as there are layers.
 
 ## Automated execution with AWS Step Functions
 
-Before execution, make sure you have run the code locally, so that `events/event0.json` has been generated correctly. 
+Before invoking the Lambda function, make sure you have run the code locally.
+A local execution will generate `events/event0.json` and will upload the correct ONNX slices to AWS S3.             
+IMPORTANT: Repeat the above step every time you change the project or the number of slices.
 
 From the `root` of the project (`onnx-decomposer_aws` folder), run the following command:
 ```bash
@@ -99,22 +103,6 @@ python3 execute_workflow_async.py [number_of_concurrent_executions]
 <sub>NB: By default on AWS, concurrent executions quota for Lambda might be set to 10.
 You can request a quota increase on this page: https://console.aws.amazon.com/servicequotas/home </sub>
 
-
-[//]: # (Get results:)
-
-[//]: # (```bash)
-
-[//]: # (python3 get_results.py)
-
-[//]: # (```)
-
 ## Metrics
 
-```bash
-python3 save_lambda_metrics.py
-```
-
-```bash
-python3 plot_lambda_metrics.py
-```
-
+See [README_metrics.md](README_metrics.md)
