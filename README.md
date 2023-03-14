@@ -16,6 +16,8 @@ Then, you need to configure the following 2 files as needed:
 - `lambda_code/projectname_config.ini`
 - `lambda_scripts/project.config`
 
+Finally, create the folder `models/<projectname>` and insert the input file(s).
+
 ## Lambda function deployment
 
 Change directory:
@@ -86,9 +88,17 @@ python3 deploy_workflow.py
 ```
 
 Execute the workflow:
+- Synchronously (waits for the results):
 ```bash
-python3 execute_workflow.py
+python3 execute_workflow_sync.py
 ```
+- Asynchronously (only starts execution, does not wait for the result):
+```bash
+python3 execute_workflow_async.py [number_of_concurrent_executions]
+```
+<sub>NB: By default on AWS, concurrent executions quota for Lambda might be set to 10.
+You can request a quota increase on this page: https://console.aws.amazon.com/servicequotas/home </sub>
+
 
 [//]: # (Get results:)
 

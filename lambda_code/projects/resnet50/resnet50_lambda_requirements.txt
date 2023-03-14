@@ -1,0 +1,4 @@
+numpy
+onnx
+onnxruntime
+protobuf==3.20.2

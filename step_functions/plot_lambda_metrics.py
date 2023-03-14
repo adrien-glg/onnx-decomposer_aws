@@ -4,6 +4,7 @@ import os
 
 import sfn_constants
 
+
 def get_csv_files():
     return os.listdir(sfn_constants.METRICS_FOLDER)
 
@@ -30,10 +31,9 @@ def plot_duration():
     X, Y = get_plot_data(duration_index)
     csv_files = get_csv_files()
 
+    plt.subplot(1, 2, duration_index - 1)
     for i in range(len(csv_files)):
-        plt.subplot(1, 2, duration_index - 1)
         plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
-
     plt.xticks(range(X[-1][0], X[-1][-1]+1))
     plt.xlabel(sfn_constants.CSV_HEADERS[1])
     plt.ylabel(sfn_constants.DURATION_TAG)
@@ -47,10 +47,9 @@ def plot_used_memory():
     X, Y = get_plot_data(used_memory_index)
     csv_files = get_csv_files()
 
+    plt.subplot(1, 2, used_memory_index - 2)
     for i in range(len(csv_files)):
-        plt.subplot(1, 2, used_memory_index - 2)
         plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
-
     plt.xticks(range(X[-1][0], X[-1][-1]+1))
     plt.xlabel(sfn_constants.CSV_HEADERS[1])
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)

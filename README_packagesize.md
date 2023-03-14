@@ -10,8 +10,8 @@ here. You can configure them later.)</sub>
 - `lambda_code/projects/<projectname>/<projectname>_lambda_requirements.txt`
 
 Then, you need to configure the 2 following files as needed:       
-<sub>(NB: Since we are only testing package size, configuration of `NUMBER_OF_SLICES`, `S3_BUCKET`, `EXECUTION_TIMEOUT` 
-and `FUNCTION_MEMORY` are not needed here. You can configure them later.)</sub>
+<sub>(NB: Since we are only testing package size, there is no need to configure `NUMBER_OF_SLICES`, `S3_BUCKET`, 
+`EXECUTION_TIMEOUT` and `FUNCTION_MEMORY`. You can configure them later.)</sub>
 - `lambda_code/projectname_config.ini`
 - `lambda_scripts/project.config`
 

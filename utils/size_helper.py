@@ -10,6 +10,7 @@ def get_pretty_size(size):
     pretty_size = convert_bytes(size)
     return pretty_size
 
+
 def get_pretty_sizes(sizes):
     pretty_sizes = []
 

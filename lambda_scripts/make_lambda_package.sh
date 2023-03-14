@@ -6,8 +6,8 @@ source project.config
 source constants.sh
 
 ########### INITIALIZATION ###########
-if [[ -d "${PACKAGE_PATH}" ]]; then
-  rm -r ${PACKAGE_PATH}
+if [[ -f "${ZIP_PACKAGE_PATH}" ]]; then
+  rm ${ZIP_PACKAGE_PATH}
 fi
 
 if [[ ! -d ${PACKAGES_PATH} ]]; then
