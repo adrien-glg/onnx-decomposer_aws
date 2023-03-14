@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         s3_manager.delete_payloads_from_s3()
         s3_manager.init_dictionary_on_s3()
         ### MOBILEDET:
-        img = np.load(constants.INPUT_IMAGE)
+        img = np.load(constants.PREPROCESSED_INPUT)
         img = img.astype("float32")
         ### END MOBILEDET
         ### EFFICIENTDET:

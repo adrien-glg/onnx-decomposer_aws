@@ -3,6 +3,8 @@
 source project.config
 source constants.sh
 
+echo "FUNCTION:" ${FUNCTION_NAME}
+
 aws lambda delete-function --function-name ${FUNCTION_NAME}
 
 aws s3 cp ${ZIP_PACKAGE_PATH} s3://${S3_BUCKET}

@@ -26,7 +26,7 @@ def lambda_handler(event, context):
         ### END MOBILEDET
         ### EFFICIENTDET:
         images = []
-        for f in [constants.INPUT_IMAGE]:
+        for f in [constants.PREPROCESSED_INPUT]:
             images.append(np.array(Image.open(f)))
         img = np.array(images, dtype='uint8')
         ### END EFFICIENTDET

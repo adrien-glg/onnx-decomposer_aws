@@ -5,6 +5,8 @@
 source project.config
 source constants.sh
 
+echo "FUNCTION:" ${FUNCTION_NAME}
+
 unzip ${ZIP_PACKAGE_PATH} -d ${PACKAGE_PATH}/package
 
 cd ${PACKAGE_PATH}/package

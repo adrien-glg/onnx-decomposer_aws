@@ -5,6 +5,8 @@
 source project.config
 source constants.sh
 
+echo "FUNCTION:" ${FUNCTION_NAME}
+
 ########### INITIALIZATION ###########
 if [[ -f "${ZIP_PACKAGE_PATH}" ]]; then
   rm ${ZIP_PACKAGE_PATH}

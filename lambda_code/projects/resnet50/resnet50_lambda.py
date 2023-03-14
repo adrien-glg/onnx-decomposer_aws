@@ -20,7 +20,7 @@ def lambda_handler(event, context):
         s3_manager.delete_payloads_from_s3()
         s3_manager.init_dictionary_on_s3()
         ### RESNET50:
-        input_array = np.load(constants.INPUT_IMAGE)
+        input_array = np.load(constants.PREPROCESSED_INPUT)
         input_float = input_array.astype("float32")
         img = np.array([input_float])
         ### END RESNET50
