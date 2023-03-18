@@ -1,7 +1,7 @@
 from configparser import ConfigParser
 
 config_parser = ConfigParser()
-config_parser.read('../lambda_code/projectname_config.ini')
+config_parser.read('../lambda_code/general_config.ini')
 
 PROJECT_NAME = config_parser.get('project', 'project_name')
 

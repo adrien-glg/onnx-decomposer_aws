@@ -1,6 +1,8 @@
 #!/bin/bash
 
 source project.config
+LAMBDA_CONFIG_FILE="lambda_config/lambda_${PROJECT_NAME}.config"
+source ${LAMBDA_CONFIG_FILE}
 source constants.sh
 
 echo "FUNCTION:" ${FUNCTION_NAME}

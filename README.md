@@ -12,9 +12,10 @@ First, make sure you have created the folder `lambda_code/projects/<projectname>
 - `lambda_code/projects/<projectname>/<projectname>_lambda.py`
 - `lambda_code/projects/<projectname>/<projectname>_lambda_requirements.txt`
 
-Then, you need to configure the following 2 files as needed:
+Then, you need to configure the following 3 files as needed:
 - `lambda_code/projectname_config.ini`
 - `lambda_scripts/project.config`
+- `lambda_scripts/lambda_config/lambda_<projectname>.config`
 
 Finally, create the folder `models/<projectname>` and insert the input file(s).
 
