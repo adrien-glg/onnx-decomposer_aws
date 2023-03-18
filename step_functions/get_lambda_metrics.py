@@ -48,6 +48,7 @@ def print_metrics(durations_list, memories_list):
     print("LAMBDA FUNCTION: " + sfn_constants.FUNCTION_NAME + "\n")
     if len(durations_list) == 0:
         print("NO METRICS TO DISPLAY")
+        print("\nPlease wait around 30 seconds after all the executions have completed")
     else:
         for i in range(len(durations_list)):
             print("\n-----------------------------------")
@@ -63,6 +64,5 @@ def print_metrics(durations_list, memories_list):
 
 
 durations, durations_with_units, memories, memories_with_units = get_metrics()
-print(durations)
 
 print_metrics(durations_with_units, memories_with_units)

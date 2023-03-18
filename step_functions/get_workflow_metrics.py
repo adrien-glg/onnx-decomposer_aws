@@ -15,13 +15,13 @@ print("STATE MACHINE ARN: " + state_machine_arn + "\n")
 
 yesterday = datetime.now() - timedelta(days=1)
 
-response= cloudwatch_client.get_metric_data(
+response = cloudwatch_client.get_metric_data(
     MetricDataQueries=[
         {
             'Id': 'q1',
             'Expression': "SELECT AVG(ExecutionTime) FROM SCHEMA(\"AWS/States\", StateMachineArn) "
                           "WHERE StateMachineArn = '" + state_machine_arn + "'",
-            'Period': 1 # The longer the period, the fewer values
+            'Period': 1  # The longer the period, the fewer values
         },
     ],
     StartTime=yesterday,
