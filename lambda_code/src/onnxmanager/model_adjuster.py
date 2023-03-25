@@ -18,8 +18,8 @@ def add_model_output(loaded_model, model_path, output_name):
         onnx.save(loaded_model, model_path)
 
 
-# REFACTOR SLICES WITH OUTPUTS NEEDED FOR OTHER SLICES
-def refactor_slices(input_lists, output_lists):
+# ADJUST SLICES WITH OUTPUTS NEEDED FOR OTHER SLICES
+def adjust_slices(input_lists, output_lists):
     input_lists_flat = list(np.concatenate(input_lists).flat)
     output_lists_flat = list(np.concatenate(output_lists).flat)
     required_outputs = list(set(input_lists_flat) - set(output_lists_flat) - set(constants.INPUT_LIST_START))
