@@ -21,7 +21,7 @@ for i in range(concurrent_executions):
         stateMachineArn=state_machine_arn,
         input=json.dumps({})
     )
-    print("Execution " + str(i) + " has started\n")
+    print("Execution " + str(i) + " has started")
 
 # pprint.pprint(response)
 

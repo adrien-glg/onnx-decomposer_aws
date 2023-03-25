@@ -11,11 +11,11 @@ print(sfn_constants.FUNCTION_NAME + "\n")
 
 
 response = logs_client.filter_log_events(
-    logGroupName='/aws/lambda/' + sfn_constants.FUNCTION_NAME,
+    # logGroupName='/aws/lambda/' + sfn_constants.FUNCTION_NAME,
     # logStreamNamePrefix="2023/03/07",
     # filterPattern='REPORT',
 )
 
 events = response['events']
 
-pprint.pprint(events)
+pprint.pprint(response)

@@ -2,9 +2,11 @@ import csv
 import os
 
 import get_lambda_metrics
+import get_workflow_metrics
 import sfn_constants
 
 durations, durations_with_units, memories, memories_with_units = get_lambda_metrics.get_metrics()
+# total_exec_time = get_workflow_metrics.get_total_exec_times()[0]
 
 if durations:
     if not os.path.exists(sfn_constants.METRICS_FOLDER):
@@ -16,3 +18,13 @@ if durations:
         for i in range(len(durations)):
             for j in range(len(durations[i])):
                 writer.writerow([i, j, durations[i][j], memories[i][j]])
+
+    # write_headers = not os.path.exists(sfn_constants.TOTAL_TIME_FILEPATH)
+    # with open(sfn_constants.TOTAL_TIME_FILEPATH, 'a', encoding='UTF8', newline='') as f:
+    #     writer = csv.writer(f)
+    #     if write_headers:
+    #         writer.writerow(sfn_constants.TOTAL_TIME_HEADERS)
+    #     writer.writerow([sfn_constants.FUNCTION_NAME, total_exec_time])
+
+
+

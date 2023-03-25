@@ -13,25 +13,33 @@ print("STATE MACHINE ARN: " + state_machine_arn + "\n")
 
 # response = cloudwatch_client.list_metrics()
 
-yesterday = datetime.now() - timedelta(days=1)
+def get_total_exec_times():
+    yesterday = datetime.now() - timedelta(days=1)
 
-response = cloudwatch_client.get_metric_data(
-    MetricDataQueries=[
-        {
-            'Id': 'q1',
-            'Expression': "SELECT AVG(ExecutionTime) FROM SCHEMA(\"AWS/States\", StateMachineArn) "
-                          "WHERE StateMachineArn = '" + state_machine_arn + "'",
-            'Period': 1  # The longer the period, the fewer values
-        },
-    ],
-    StartTime=yesterday,
-    EndTime=datetime.now()
-)
+    response = cloudwatch_client.get_metric_data(
+        MetricDataQueries=[
+            {
+                'Id': 'q1',
+                'Expression': "SELECT AVG(ExecutionTime) FROM SCHEMA(\"AWS/States\", StateMachineArn) "
+                              "WHERE StateMachineArn = '" + state_machine_arn + "'",
+                'Period': 1  # The longer the period, the fewer values
+            },
+        ],
+        StartTime=yesterday,
+        EndTime=datetime.now()
+    )
 
-#pprint.pprint(response)
-print("AVG(ExecutionTime):")
-pprint.pprint(response['MetricDataResults'][0]['Values'])
-# print(response)
+    exec_times = response['MetricDataResults'][0]['Values']
+    return exec_times
 
+
+def print_total_exec_times(exec_times):
+    # pprint.pprint(response)
+    print("AVG(ExecutionTime):")
+    print(exec_times)
+
+
+exec_times = get_total_exec_times()
+print_total_exec_times(exec_times)
 
 
