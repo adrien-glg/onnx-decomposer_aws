@@ -40,7 +40,7 @@ def get_intermediate_inputs(start_layer_index, end_layer_index):
     return intermediate_inputs
 
 
-def build_lists():
+def get_built_lists():
     input_lists, output_lists, past_outputs = [], [], []
 
     model = onnx.load(onnxmanager.MODEL_PATH)

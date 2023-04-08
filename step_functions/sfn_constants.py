@@ -20,6 +20,7 @@ EXECUTION_ARN_FILE = "outputs/execution_arn.txt"
 # METRICS
 METRICS_FOLDER = "metrics/" + PROJECT_NAME + "/"
 METRICS_FILE = METRICS_FOLDER + FUNCTION_NAME + '.csv'
+METRICS_FILE_TIMESTAMPS = METRICS_FOLDER + FUNCTION_NAME + '_timestamps.csv'
 TOTAL_TIME_FILE = PROJECT_NAME + '_total_exec_times.csv'
 TOTAL_TIME_FILEPATH = METRICS_FOLDER + PROJECT_NAME + '_total_exec_times.csv'
 DURATION_TAG = 'Duration (ms)'
@@ -27,5 +28,6 @@ BILLED_DURATION_TAG = 'Billed duration (ms)'
 USED_MEMORY_TAG = 'Max memory used (MB)'
 TOTAL_TIME_TAG = 'Total execution time average (ms)'
 CSV_HEADERS = ['Execution', 'Slice', DURATION_TAG, USED_MEMORY_TAG]
+CSV_HEADERS_TIMESTAMPS = ['Timestamp', DURATION_TAG, USED_MEMORY_TAG]
 TOTAL_TIME_HEADERS = ['Function', TOTAL_TIME_TAG]
 
