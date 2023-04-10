@@ -17,3 +17,5 @@ INPUT_LIST_START = list(parsed_input_list.split("\n"))[1:]
 
 parsed_output_list = config_parser.get('project', 'output_list_end')
 OUTPUT_LIST_END = list(parsed_output_list.split("\n"))[1:]
+
+PROJECT_STEPS_MODULE = "projects." + PROJECT_NAME + "." + PROJECT_NAME + "_lambda_steps"
