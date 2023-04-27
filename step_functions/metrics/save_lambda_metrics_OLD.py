@@ -1,8 +1,8 @@
 import csv
 import os
 
-import get_lambda_metrics
-import sfn_constants
+from step_functions.metrics import get_lambda_metrics
+from step_functions.deployment import sfn_constants
 
 metrics = get_lambda_metrics.get_metrics()[0]
 

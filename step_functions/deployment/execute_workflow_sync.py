@@ -1,7 +1,10 @@
 import boto3
 import json
-import utils
-import sfn_constants
+import pprint
+
+from step_functions.deployment import sfn_constants
+from step_functions.deployment import utils
+
 
 sfn_client = boto3.client('stepfunctions')
 
@@ -18,10 +21,10 @@ response = sfn_client.start_sync_execution(
 utils.save_to_file(response['executionArn'], sfn_constants.EXECUTION_ARN_FILE)
 
 if response['status'] == 'FAILED':
-    print(response)
+    pprint.pprint(response)
     print("\nThe execution has failed")
 elif response['status'] == 'SUCCEEDED':
-    print(response['output'])
+    pprint.pprint(response['output'])
     print("\nThe execution has succeeded")
 else:
-    print(response)
+    pprint.pprint(response)

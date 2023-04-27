@@ -2,7 +2,7 @@ import boto3
 from datetime import datetime, timedelta
 import pprint
 
-import utils
+from step_functions.deployment import utils
 
 cloudwatch_client = boto3.client('cloudwatch')
 # cloudwatch = boto3.resource('cloudwatch')

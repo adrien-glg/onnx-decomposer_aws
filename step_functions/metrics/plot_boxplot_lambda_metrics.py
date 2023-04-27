@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import csv
 import os
 
-import sfn_constants
+from step_functions.deployment import sfn_constants
 
 
 def get_csv_files():

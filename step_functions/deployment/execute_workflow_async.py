@@ -1,10 +1,10 @@
-import pprint
 import sys
-
 import boto3
 import json
-import utils
-import sfn_constants
+
+from step_functions.deployment import sfn_constants
+from step_functions.deployment import utils
+
 
 if len(sys.argv) == 1:
     concurrent_executions = 1
@@ -23,8 +23,4 @@ for i in range(concurrent_executions):
     )
     print("Execution " + str(i) + " has started")
 
-# pprint.pprint(response)
-
 utils.save_to_file(response['executionArn'], sfn_constants.EXECUTION_ARN_FILE)
-
-

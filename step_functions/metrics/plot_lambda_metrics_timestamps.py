@@ -2,12 +2,11 @@ import matplotlib.pyplot as plt
 import csv
 import os
 
-import sfn_constants
-
+from step_functions.deployment import sfn_constants
 
 def get_csv_files():
-    files_list = os.listdir(sfn_constants.METRICS_FOLDER)
-    files_list.remove(sfn_constants.TOTAL_TIME_FILE)
+    all_files_list = os.listdir(sfn_constants.METRICS_FOLDER)
+    files_list = [file for file in all_files_list if "timestamps" in file]
     return files_list
 
 
@@ -28,6 +27,13 @@ def get_plot_data(header_index):
     return X, Y
 
 
+def offset_timestamps(timestamps_lists):
+    for i in range(len(timestamps_lists)):
+        first_timestamp = timestamps_lists[i][0]
+        for j in range(len(timestamps_lists[i])):
+            timestamps_lists[i][j] -= first_timestamp
+
+
 def get_total_exec_time():
     functions, times = [], []
     text = "Total Execution Time Average:\n"
@@ -45,21 +51,24 @@ def get_total_exec_time():
 def plot_duration():
     duration_index = sfn_constants.CSV_HEADERS.index(sfn_constants.DURATION_TAG) - 1
     X, Y = get_plot_data(duration_index)
+    offset_timestamps(X)
     exec_times_text = get_total_exec_time()
     csv_files = get_csv_files()
 
     plt.subplot(2, 1, duration_index)
     for i in range(len(csv_files)):
-        plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
+        plt.plot(X[i], Y[i], marker='o', linestyle='None', label=os.path.splitext(csv_files[i])[0])
+        # plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
     # plt.xticks(range(X[-1][0], X[-1][-1]+1))
-    plt.xlabel(sfn_constants.CSV_HEADERS[0])
+    plt.xlim(X[0][0], max(X[i][-1] for i in range(len(X))))
+    plt.xlabel(sfn_constants.CSV_HEADERS_TIMESTAMPS[0])
     plt.ylabel(sfn_constants.DURATION_TAG)
     plt.title(sfn_constants.PROJECT_NAME.upper() + '\n\nExecution time', fontsize=20)
     # plt.annotate(exec_times_text, xy=(0.05, 0.80), xycoords='axes fraction')
     plt.annotate(exec_times_text, xy=(0, 1), xytext=(12, 50), va='top',
                  xycoords='axes fraction', textcoords='offset points')
-    plt.axvline(x=50, color='r')
-    plt.axvline(x=100, color='r')
+    # plt.axvline(x=50, color='r')
+    # plt.axvline(x=100, color='r')
     plt.grid()
     plt.legend()
 
@@ -67,17 +76,20 @@ def plot_duration():
 def plot_used_memory():
     used_memory_index = sfn_constants.CSV_HEADERS.index(sfn_constants.USED_MEMORY_TAG) - 1
     X, Y = get_plot_data(used_memory_index)
+    offset_timestamps(X)
     csv_files = get_csv_files()
 
     plt.subplot(2, 1, used_memory_index)
     for i in range(len(csv_files)):
-        plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
+        plt.plot(X[i], Y[i], marker='o', linestyle='None', label=os.path.splitext(csv_files[i])[0])
+        # plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
     # plt.xticks(range(X[-1][0], X[-1][-1]+1))
-    plt.xlabel(sfn_constants.CSV_HEADERS[0])
+    plt.xlim(X[0][0], max(X[i][-1] for i in range(len(X))))
+    plt.xlabel(sfn_constants.CSV_HEADERS_TIMESTAMPS[0])
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)
     plt.title('Memory', fontsize=20)
-    plt.axvline(x=50, color='r')
-    plt.axvline(x=100, color='r')
+    # plt.axvline(x=50, color='r')
+    # plt.axvline(x=100, color='r')
     plt.grid()
     plt.legend()
 

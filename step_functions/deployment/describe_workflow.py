@@ -1,5 +1,8 @@
 import boto3
-import utils
+import pprint
+
+from step_functions.deployment import utils
+
 
 sfn_client = boto3.client('stepfunctions')
 
@@ -9,4 +12,4 @@ response = sfn_client.describe_state_machine(
     stateMachineArn=state_machine_arn
 )
 
-print(response)
+pprint.pprint(response)

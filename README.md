@@ -71,10 +71,13 @@ Before invoking the Lambda function, make sure you have run the code locally.
 A local execution will generate `events/event0.json` and will upload the correct ONNX slices to AWS S3.             
 IMPORTANT: Repeat the above step every time you change the project or the number of slices.
 
+Before deployment, you need to configure the following file as needed:
+- `step_functions/sfn_config.ini`
+
 From the `root` of the project (`onnx-decomposer_aws` folder), run the following command:
 ```bash
 export PYTHONPATH=$PYTHONPATH:"$PWD":"$PWD/lambda_code"
-cd step_functions
+cd step_functions/deployment
 ```
 
 Create a role for Step Functions operations (you only need to run this command once and for all for your AWS account):
@@ -82,10 +85,6 @@ Create a role for Step Functions operations (you only need to run this command o
 python3 grant_permissions.py
 ```
 If you get an error warning about `"Role with name StepFunctionLambdaBasicExecution already exists"`, you can ignore it.
-
-Before deployment, you need to configure the following file as needed:
-- `step_functions/sfn_config.ini`
-
 
 Deploy the workflow:
 ```bash
@@ -97,7 +96,7 @@ Execute the workflow:
 ```bash
 python3 execute_workflow_sync.py
 ```
-- Asynchronously (only starts execution, does not wait for the result):
+- Asynchronously (only starts execution, does not wait for the results):
 ```bash
 python3 execute_workflow_async.py [number_of_concurrent_executions]
 ```

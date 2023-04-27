@@ -15,7 +15,7 @@ Then, you need to configure the 2 following files as needed:
 - `lambda_code/projectname_config.ini`
 - `lambda_scripts/project.config`
 
-## Making package
+## Making deployment package
 
 Change directory:
 ```bash
@@ -44,15 +44,15 @@ Only if needed, once the package has been created a first time, you can easily a
 ./modify_code_only.sh
 ```
 
-## Checking package size
+## Conformity check: Checking package size
 
 From the `root` of the project (`onnx-decomposer_aws` folder), run the following commands:
 ```bash
-export PYTHONPATH=$PYTHONPATH:"$PWD":"$PWD/utils"
-cd utils
+export PYTHONPATH=$PYTHONPATH:"$PWD"
+cd conformity_checks
 ```
 
 Check package size:
 ```bash
-python3 main_packagesize.py
+python3 check_packagesize.py
 ```

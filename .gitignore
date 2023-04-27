@@ -8,8 +8,8 @@ packages/*
 step_functions/deploy_workflow_output.txt
 step_functions/outputs/*
 !step_functions/outputs/README.md
-step_functions/metrics/*
-!step_functions/metrics/README.md
+step_functions/saved_metrics/*
+!step_functions/saved_metrics/README.md
 
 lambda_code/.idea/
 

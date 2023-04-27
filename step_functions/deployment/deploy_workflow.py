@@ -1,9 +1,11 @@
 import boto3
 import json
 import time
+import pprint
 
-import sfn_constants
-import utils
+from step_functions.deployment import sfn_constants
+from step_functions.deployment import utils
+
 
 sfn_client = boto3.client('stepfunctions')
 lambda_client = boto3.client('lambda')
@@ -66,12 +68,6 @@ log_group_description = logs_client.describe_log_groups(
 )
 log_group_arn = log_group_description['logGroups'][0]['arn']
 
-# response = sfn_client.create_state_machine(
-#     name=sfn_constants.STATE_MACHINE_NAME,
-#     definition=json.dumps(asl_definition),
-#     roleArn=role['Role']['Arn']
-# )
-
 response = sfn_client.create_state_machine(
     name=sfn_constants.STATE_MACHINE_NAME,
     definition=json.dumps(asl_definition),
@@ -92,4 +88,4 @@ response = sfn_client.create_state_machine(
 
 utils.save_to_file(response['stateMachineArn'], sfn_constants.STATE_MACHINE_ARN_FILE)
 
-print(response)
+pprint.pprint(response)

@@ -1,9 +1,8 @@
 import csv
 import os
 
-import get_lambda_metrics_unsorted
-import get_workflow_metrics
-import sfn_constants
+from step_functions.metrics import get_lambda_metrics_unsorted, get_workflow_metrics
+from step_functions.deployment import sfn_constants
 
 metrics = get_lambda_metrics_unsorted.get_metrics()[0]
 total_exec_time = get_workflow_metrics.get_total_exec_times()[0]

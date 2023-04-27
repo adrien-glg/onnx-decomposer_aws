@@ -1,4 +1,4 @@
-import sfn_constants
+from step_functions.deployment import sfn_constants
 from datetime import date
 
 
@@ -27,6 +27,7 @@ def get_today_date():
     today_date = today.strftime("%Y/%m/%d")
     return today_date
 
+
 def get_duration(message, billed=False):
     if billed:
         term = 'Billed Duration: '
@@ -41,6 +42,7 @@ def get_duration(message, billed=False):
     unit = duration_with_unit.split()[1]
 
     return duration, unit
+
 
 def get_used_memory(message):
     term = 'Max Memory Used: '

@@ -1,6 +1,6 @@
 import os
 
-import utils
+from utils import constants
 
 
 # def get_number_of_packages():
@@ -27,5 +27,5 @@ import utils
 #     return package_sizes_per_slice
 
 def get_package_size():
-    package_size = os.path.getsize(utils.PACKAGE_PATH)
+    package_size = os.path.getsize(constants.PACKAGE_PATH)
     return package_size

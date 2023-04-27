@@ -1,5 +1,6 @@
 import boto3
 import json
+import pprint
 
 iam = boto3.client('iam')
 role_policy = {
@@ -16,15 +17,6 @@ role_policy = {
   ]
 }
 
-# cloudwatch_role_policy = {
-#     "Sid": "VisualEditor0",
-#     "Effect": "Allow",
-#     "Principal": {
-#       "Service": "states.amazonaws.com"
-#     },
-#     "Action": "cloudwatch:*",
-# }
-
 response = iam.create_role(
   RoleName='StepFunctionsExecutionWithLogs',
   AssumeRolePolicyDocument=json.dumps(role_policy),
@@ -38,6 +30,6 @@ attach_cloudwatch_policy_response = iam.attach_role_policy(
     PolicyArn='arn:aws:iam::aws:policy/CloudWatchFullAccess'
 )
 
-print(response)
-print(attach_lambda_policy_response)
-print(attach_cloudwatch_policy_response)
+pprint.pprint(response)
+pprint.pprint(attach_lambda_policy_response)
+pprint.pprint(attach_cloudwatch_policy_response)

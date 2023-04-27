@@ -2,8 +2,8 @@ import boto3
 from datetime import datetime, timedelta
 import pprint
 
-import sfn_constants
-import utils
+from step_functions.deployment import sfn_constants
+from step_functions.deployment import utils
 
 logs_client = boto3.client('logs')
     
