@@ -5,14 +5,14 @@ import os
 from step_functions.deployment import sfn_constants
 
 
-def get_csv_files():
+def get_csv_filenames():
     return os.listdir(sfn_constants.METRICS_FOLDER)
 
 
 # FUNCTION NAMES = CSV FILES WO EXTENSION
 def get_function_names():
     function_names = []
-    csv_files = get_csv_files()
+    csv_files = get_csv_filenames()
     for i in range(len(csv_files)):
         function_names += [os.path.splitext(csv_files[i])[0]]
     return function_names
@@ -20,7 +20,7 @@ def get_function_names():
 
 def get_plot_data(header_index):
     data = []
-    csv_files = get_csv_files()
+    csv_files = get_csv_filenames()
     expected_csv_file = sfn_constants.FUNCTION_NAME + ".csv"
 
     # for i in range(len(csv_files)):
