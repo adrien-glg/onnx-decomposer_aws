@@ -47,7 +47,7 @@ def plot_duration():
     # plt.xticks(range(len(data)))
     plt.xlabel("Slice number")
     plt.ylabel(sfn_constants.DURATION_TAG)
-    plt.title('Execution time (' + sfn_constants.FUNCTION_NAME + ")", fontsize=20)
+    # plt.title('Execution time (' + sfn_constants.FUNCTION_NAME + ")", fontsize=20)
     plt.grid()
     plt.legend()
 
@@ -62,7 +62,7 @@ def plot_used_memory():
     # plt.xticks(range(1, len(Y)+1), function_names)
     plt.xlabel("Slice number")
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)
-    plt.title('Memory (' + sfn_constants.FUNCTION_NAME + ")", fontsize=20)
+    # plt.title('Memory (' + sfn_constants.FUNCTION_NAME + ")", fontsize=20)
     plt.grid()
     plt.legend()
 

@@ -4,6 +4,7 @@ import os
 
 from step_functions.deployment import sfn_constants
 
+
 def get_csv_files():
     all_files_list = os.listdir(sfn_constants.METRICS_FOLDER)
     files_list = [file for file in all_files_list if "timestamps" in file]
@@ -63,7 +64,7 @@ def plot_duration():
     plt.xlim(X[0][0], max(X[i][-1] for i in range(len(X))))
     plt.xlabel(sfn_constants.CSV_HEADERS_TIMESTAMPS[0])
     plt.ylabel(sfn_constants.DURATION_TAG)
-    plt.title(sfn_constants.PROJECT_NAME.upper() + '\n\nExecution time', fontsize=20)
+    # plt.title(sfn_constants.PROJECT_NAME.upper() + '\n\nExecution time', fontsize=20)
     # plt.annotate(exec_times_text, xy=(0.05, 0.80), xycoords='axes fraction')
     plt.annotate(exec_times_text, xy=(0, 1), xytext=(12, 50), va='top',
                  xycoords='axes fraction', textcoords='offset points')
@@ -87,7 +88,7 @@ def plot_used_memory():
     plt.xlim(X[0][0], max(X[i][-1] for i in range(len(X))))
     plt.xlabel(sfn_constants.CSV_HEADERS_TIMESTAMPS[0])
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)
-    plt.title('Memory', fontsize=20)
+    # plt.title('Memory', fontsize=20)
     # plt.axvline(x=50, color='r')
     # plt.axvline(x=100, color='r')
     plt.grid()

@@ -4,6 +4,7 @@ import os
 
 from step_functions.deployment import sfn_constants
 
+
 def get_csv_files():
     files_list = os.listdir(sfn_constants.METRICS_FOLDER)
     files_list.remove(sfn_constants.TOTAL_TIME_FILE)
@@ -53,7 +54,7 @@ def plot_duration():
     # plt.xticks(range(X[-1][0], X[-1][-1]+1))
     plt.xlabel(sfn_constants.CSV_HEADERS[0])
     plt.ylabel(sfn_constants.DURATION_TAG)
-    plt.title(sfn_constants.PROJECT_NAME.upper() + '\n\nExecution time', fontsize=20)
+    # plt.title(sfn_constants.PROJECT_NAME.upper() + '\n\nExecution time', fontsize=20)
     # plt.annotate(exec_times_text, xy=(0.05, 0.80), xycoords='axes fraction')
     plt.annotate(exec_times_text, xy=(0, 1), xytext=(12, 50), va='top',
                  xycoords='axes fraction', textcoords='offset points')
@@ -74,22 +75,22 @@ def plot_used_memory():
     # plt.xticks(range(X[-1][0], X[-1][-1]+1))
     plt.xlabel(sfn_constants.CSV_HEADERS[0])
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)
-    plt.title('Memory', fontsize=20)
+    # plt.title('Memory', fontsize=20)
     plt.axvline(x=50, color='r')
     plt.axvline(x=100, color='r')
     plt.grid()
     plt.legend()
 
 
-if __name__ == "__main__":
-    plot_duration()
-    plot_used_memory()
-    mng = plt.get_current_fig_manager()
-    mng.resize(1600, 1000)
-    plt.subplots_adjust(left=0.1,
-                        bottom=0.1,
-                        right=0.9,
-                        top=0.9,
-                        wspace=0.4,
-                        hspace=0.4)
-    plt.show()
+# if __name__ == "__main__":
+#     plot_duration()
+#     plot_used_memory()
+#     mng = plt.get_current_fig_manager()
+#     mng.resize(1600, 1000)
+#     plt.subplots_adjust(left=0.1,
+#                         bottom=0.1,
+#                         right=0.9,
+#                         top=0.9,
+#                         wspace=0.4,
+#                         hspace=0.4)
+#     plt.show()

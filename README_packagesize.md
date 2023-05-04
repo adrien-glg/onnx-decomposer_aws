@@ -54,5 +54,5 @@ cd conformity_checks
 
 Check package size:
 ```bash
-python3 check_packagesize.py
+python3 check_package_size.py
 ```

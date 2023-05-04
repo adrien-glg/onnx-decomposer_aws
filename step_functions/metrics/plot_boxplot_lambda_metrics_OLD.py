@@ -4,6 +4,7 @@ import os
 
 from step_functions.deployment import sfn_constants
 
+
 def get_csv_files():
     return os.listdir(sfn_constants.METRICS_FOLDER)
 
@@ -43,7 +44,7 @@ def plot_duration():
     plt.boxplot(Y)
     plt.xticks(range(1, len(Y)+1), function_names)
     plt.ylabel(sfn_constants.DURATION_TAG)
-    plt.title('Execution time', fontsize=20)
+    # plt.title('Execution time', fontsize=20)
     plt.grid()
     plt.legend()
 
@@ -57,7 +58,7 @@ def plot_used_memory():
     plt.boxplot(Y)
     plt.xticks(range(1, len(Y)+1), function_names)
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)
-    plt.title('Memory', fontsize=20)
+    # plt.title('Memory', fontsize=20)
     plt.grid()
     plt.legend()
 
