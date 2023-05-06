@@ -54,8 +54,8 @@ def plot_duration():
     # plt.annotate(exec_times_text, xy=(0.05, 0.80), xycoords='axes fraction')
     plt.annotate(exec_times_text, xy=(0, 1), xytext=(12, 50), va='top',
                  xycoords='axes fraction', textcoords='offset points')
-    plt.axvline(x=50, color='r')
-    plt.axvline(x=100, color='r')
+    # plt.axvline(x=50, color='r')
+    # plt.axvline(x=100, color='r')
     plt.grid()
     plt.legend()
 
@@ -72,10 +72,10 @@ def plot_used_memory():
     plt.xlabel(sfn_constants.CSV_HEADERS[0])
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)
     # plt.title('Memory', fontsize=20)
-    plt.axvline(x=50, color='r')
-    plt.axvline(x=100, color='r')
+    # plt.axvline(x=50, color='r')
+    # plt.axvline(x=100, color='r')
     plt.grid()
-    plt.legend()
+    # plt.legend()
 
 
 if __name__ == "__main__":

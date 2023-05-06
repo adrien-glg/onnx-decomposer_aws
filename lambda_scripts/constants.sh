@@ -1,4 +1,10 @@
-FUNCTION_NAME="${PROJECT_NAME}_${NUMBER_OF_SLICES}_slices"
+NUMBER_OF_SLICES_DD=$(printf "%02d" ${NUMBER_OF_SLICES})
+if [[ ${NUMBER_OF_SLICES} -eq 1 ]]
+then
+    FUNCTION_NAME="${PROJECT_NAME}_01_slice"
+else
+    FUNCTION_NAME="${PROJECT_NAME}_${NUMBER_OF_SLICES_DD}_slices"
+fi
 LAMBDA_CODE="../lambda_code"
 INPUT_IMAGE_PATH="../models/${PROJECT_NAME}/${IMAGE_FILE}"
 PACKAGES_PATH="../packages"

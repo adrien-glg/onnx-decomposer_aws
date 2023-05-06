@@ -13,7 +13,7 @@ First, make sure you have created the folder `lambda_code/projects/<projectname>
 - `lambda_code/projects/<projectname>/<projectname>_lambda_requirements.txt`
 
 Then, you need to configure the following 3 files as needed:
-- `lambda_code/projectname_config.ini`
+- `lambda_code/general_config.ini`
 - `lambda_scripts/project.config`
 - `lambda_scripts/lambda_config/lambda_<projectname>.config`
 
@@ -33,9 +33,6 @@ Create a Python Virtual Environment (venv):
 
 You need to activate the virtual environment with `source venv/bin/activate` for the next steps.       
 You can deactivate the virtual environment with `deactivate`.
-
-Before creating the Lambda package, make sure `lambda_code/projectname_config.ini` and 
-`lambda_scripts/project.config` have been configured correctly.
 
 Create the deployment Lambda package:
 ```bash
@@ -70,9 +67,6 @@ Run the command above as many times as there are layers.
 Before invoking the Lambda function, make sure you have run the code locally.
 A local execution will generate `events/event0.json` and will upload the correct ONNX slices to AWS S3.             
 IMPORTANT: Repeat the above step every time you change the project or the number of slices.
-
-Before deployment, you need to configure the following file as needed:
-- `step_functions/sfn_config.ini`
 
 From the `root` of the project (`onnx-decomposer_aws` folder), run the following command:
 ```bash
