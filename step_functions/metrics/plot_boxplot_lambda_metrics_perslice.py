@@ -3,16 +3,13 @@ import csv
 import os
 
 from step_functions.deployment import sfn_constants
-
-
-def get_csv_filenames():
-    return os.listdir(sfn_constants.METRICS_FOLDER)
+import helpers
 
 
 # FUNCTION NAMES = CSV FILES WO EXTENSION
 def get_function_names():
     function_names = []
-    csv_files = get_csv_filenames()
+    csv_files = helpers.get_csv_filenames("perslice")
     for i in range(len(csv_files)):
         function_names += [os.path.splitext(csv_files[i])[0]]
     return function_names
@@ -20,8 +17,10 @@ def get_function_names():
 
 def get_plot_data(header_index):
     data = []
-    csv_files = get_csv_filenames()
-    expected_csv_file = sfn_constants.FUNCTION_NAME + ".csv"
+    csv_files = helpers.get_csv_filenames("perslice")
+    for file in csv_files:
+        if file.startswith(sfn_constants.FUNCTION_NAME):
+            expected_csv_file = file
 
     # for i in range(len(csv_files)):
     #     with open(sfn_constants.METRICS_FOLDER + csv_files[i], 'r') as csvfile:
@@ -31,9 +30,9 @@ def get_plot_data(header_index):
             next(lines)
             for row in lines:
                 slice_number = int(row[1])
-                if len(data) < slice_number + 1:
+                if len(data) < slice_number:
                     data += [[]]
-                data[slice_number] += [float(row[header_index])]
+                data[slice_number - 1] += [float(row[header_index])]
     return data
 
 

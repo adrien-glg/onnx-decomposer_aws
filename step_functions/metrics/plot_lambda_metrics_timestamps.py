@@ -8,7 +8,7 @@ import helpers
 
 def get_plot_data(header_index):
     X, Y = [], []
-    csv_files = helpers.get_csv_filenames(timestamps=True)
+    csv_files = helpers.get_csv_filenames("timestamps")
 
     for i in range(len(csv_files)):
         with open(sfn_constants.METRICS_FOLDER + csv_files[i], 'r') as csvfile:
@@ -49,14 +49,16 @@ def plot_duration():
     X, Y = get_plot_data(duration_index)
     offset_timestamps(X)
     exec_times_text = get_total_exec_time()
-    csv_files = helpers.get_csv_filenames(timestamps=True)
+    csv_files = helpers.get_csv_filenames("timestamps")
 
     plt.subplot(2, 1, duration_index)
     for i in range(len(csv_files)):
         # label = helpers.get_label(csv_files[i])  # TODO: uncomment this label for final display
         plt.plot(X[i], Y[i], marker=sfn_constants.MARKERS[i], linestyle='-', label=csv_files[i])
     # plt.xticks(range(X[-1][0], X[-1][-1]+1))
-    plt.xlim(X[0][0], max(X[i][-1] for i in range(len(X))))
+    # plt.xlim(X[0][0], max(X[i][-1] for i in range(len(X))))
+    plt.xlim(1, X[-1][-1])
+    plt.ylim(0)
     # plt.xlabel(sfn_constants.CSV_HEADERS_TIMESTAMPS[0])
     plt.ylabel(sfn_constants.DURATION_TAG)
     # plt.title(sfn_constants.PROJECT_NAME.upper() + '\n\nExecution time', fontsize=20)
@@ -71,13 +73,15 @@ def plot_used_memory():
     used_memory_index = sfn_constants.CSV_HEADERS.index(sfn_constants.USED_MEMORY_TAG) - 1
     X, Y = get_plot_data(used_memory_index)
     offset_timestamps(X)
-    csv_files = helpers.get_csv_filenames(timestamps=True)
+    csv_files = helpers.get_csv_filenames("timestamps")
 
     plt.subplot(2, 1, used_memory_index)
     for i in range(len(csv_files)):
         plt.plot(X[i], Y[i], marker=sfn_constants.MARKERS[i], linestyle='-')
         # plt.plot(X[i], Y[i], marker='o', label=os.path.splitext(csv_files[i])[0])
-    plt.xlim(X[0][0], max(X[i][-1] for i in range(len(X))))
+    # plt.xlim(X[0][0], max(X[i][-1] for i in range(len(X))))
+    plt.xlim(1, X[-1][-1])
+    plt.ylim(0)
     plt.xlabel(sfn_constants.CSV_HEADERS_TIMESTAMPS[0])
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)
     # plt.title('Memory', fontsize=20)

@@ -1,7 +1,6 @@
 import matplotlib.pyplot as plt
 import csv
 import os
-import numpy as np
 
 from step_functions.deployment import sfn_constants
 import helpers
@@ -9,7 +8,7 @@ import helpers
 
 def get_plot_data(header_index):
     X, Y = [], []
-    csv_files = helpers.get_csv_filenames()
+    csv_files = helpers.get_csv_filenames("executions")
 
     for i in range(len(csv_files)):
         with open(sfn_constants.METRICS_FOLDER + csv_files[i], 'r') as csvfile:
@@ -42,12 +41,14 @@ def plot_duration():
     duration_index = sfn_constants.CSV_HEADERS.index(sfn_constants.DURATION_TAG) - 1
     X, Y = get_plot_data(duration_index)
     exec_times_text = get_total_exec_time()
-    csv_files = helpers.get_csv_filenames()
+    csv_files = helpers.get_csv_filenames("executions")
 
     plt.subplot(2, 1, duration_index)
     for i in range(len(csv_files)):
         plt.plot(X[i], Y[i], marker=sfn_constants.MARKERS[i], label=os.path.splitext(csv_files[i])[0])
     # plt.xticks(range(X[-1][0], X[-1][-1]+1))
+    plt.xlim(1, X[-1][-1])
+    plt.ylim(0)
     plt.xlabel(sfn_constants.CSV_HEADERS[0])
     plt.ylabel(sfn_constants.DURATION_TAG)
     # plt.title(sfn_constants.PROJECT_NAME.upper() + '\n\nExecution time', fontsize=20)
@@ -57,18 +58,20 @@ def plot_duration():
     # plt.axvline(x=50, color='r')
     # plt.axvline(x=100, color='r')
     plt.grid()
-    plt.legend()
+    plt.legend(loc='upper right', framealpha=1)
 
 
 def plot_used_memory():
     used_memory_index = sfn_constants.CSV_HEADERS.index(sfn_constants.USED_MEMORY_TAG) - 1
     X, Y = get_plot_data(used_memory_index)
-    csv_files = helpers.get_csv_filenames()
+    csv_files = helpers.get_csv_filenames("executions")
 
     plt.subplot(2, 1, used_memory_index)
     for i in range(len(csv_files)):
         plt.plot(X[i], Y[i], marker=sfn_constants.MARKERS[i], label=os.path.splitext(csv_files[i])[0])
     # plt.xticks(range(X[-1][0], X[-1][-1]+1))
+    plt.xlim(1, X[-1][-1])
+    plt.ylim(0)
     plt.xlabel(sfn_constants.CSV_HEADERS[0])
     plt.ylabel(sfn_constants.USED_MEMORY_TAG)
     # plt.title('Memory', fontsize=20)

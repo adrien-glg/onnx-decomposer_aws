@@ -13,6 +13,7 @@ print("STATE MACHINE ARN: " + state_machine_arn + "\n")
 
 # response = cloudwatch_client.list_metrics()
 
+
 def get_total_exec_times():
     yesterday = datetime.now() - timedelta(days=1)
 

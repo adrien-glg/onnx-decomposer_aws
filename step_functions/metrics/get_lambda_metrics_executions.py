@@ -20,7 +20,7 @@ def get_metrics():
 
     for i in range(len(events)):
         message = events[i]['message']
-        execution_number = i
+        execution_number = i + 1
         duration = utils.get_duration(message)
         used_memory = utils.get_used_memory(message)
         metrics = [execution_number, duration[0], used_memory[0]]

@@ -3,12 +3,14 @@ import os
 from step_functions.deployment import sfn_constants
 
 
-def get_csv_filenames(timestamps=False):
+def get_csv_filenames(mode):
     filenames_list = os.listdir(sfn_constants.METRICS_FOLDER)
-    if timestamps:
-        filenames_list = [file for file in filenames_list if "timestamps" in file]
-    else:
+    if mode == "executions":
         filenames_list = [file for file in filenames_list if "executions" in file]
+    elif mode == "perslice":
+        filenames_list = [file for file in filenames_list if "perslice" in file]
+    elif mode == "timestamps":
+        filenames_list = [file for file in filenames_list if "timestamps" in file]
     return filenames_list
 
 

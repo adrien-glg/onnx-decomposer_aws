@@ -7,7 +7,7 @@ LAMBDA_CONFIG_FILE="lambda_config/lambda_${PROJECT_NAME}.config"
 source ${LAMBDA_CONFIG_FILE}
 source constants.sh
 
-echo "FUNCTION:" ${FUNCTION_NAME}
+echo "FUNCTION:" ${FUNCTION_NAME}; echo
 
 ########### INITIALIZATION ###########
 if [[ -f "${ZIP_PACKAGE_PATH}" ]]; then
@@ -36,4 +36,4 @@ mv package.zip ${ZIP_PACKAGE}
 
 rm -r package
 
-
+echo; echo ${ZIP_PACKAGE} "successfully created"

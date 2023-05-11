@@ -21,6 +21,6 @@ for i in range(concurrent_executions):
         stateMachineArn=state_machine_arn,
         input=json.dumps({})
     )
-    print("Execution " + str(i) + " has started")
+    print("Execution " + str(i + 1) + " has started")
 
 utils.save_to_file(response['executionArn'], sfn_constants.EXECUTION_ARN_FILE)

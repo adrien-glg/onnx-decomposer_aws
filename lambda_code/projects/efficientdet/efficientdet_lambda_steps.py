@@ -1,4 +1,6 @@
 import numpy as np
+from PIL import Image
+
 from src import constants
 from src.jsonmanager import json_manager
 

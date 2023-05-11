@@ -13,7 +13,7 @@ if NUMBER_OF_SLICES == 1:
     FUNCTION_NAME = PROJECT_NAME + "_01_slice"
 else:
     FUNCTION_NAME = PROJECT_NAME + "_" + str(NUMBER_OF_SLICES).zfill(2) + "_slices"
-STATE_MACHINE_NAME = FUNCTION_NAME + "_state_machine"
+STATE_MACHINE_NAME = FUNCTION_NAME + "_StateMachine"
 EVENT0 = "../../events/event0.json"
 STATE_MACHINE_ARN_FILE = "../outputs/state_machine_arn.txt"
 EXECUTION_ARN_FILE = "../outputs/execution_arn.txt"
@@ -21,6 +21,7 @@ EXECUTION_ARN_FILE = "../outputs/execution_arn.txt"
 # METRICS
 METRICS_FOLDER = "../saved_metrics/" + PROJECT_NAME + "/"
 METRICS_FILE = METRICS_FOLDER + FUNCTION_NAME + '_executions.csv'
+METRICS_FILE_SLICES = METRICS_FOLDER + FUNCTION_NAME + '_perslice.csv'
 METRICS_FILE_TIMESTAMPS = METRICS_FOLDER + FUNCTION_NAME + '_timestamps.csv'
 TOTAL_TIME_FILE = PROJECT_NAME + '_total_exec_times.csv'
 TOTAL_TIME_FILEPATH = METRICS_FOLDER + PROJECT_NAME + '_total_exec_times.csv'

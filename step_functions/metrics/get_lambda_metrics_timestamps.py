@@ -38,7 +38,7 @@ def print_metrics(metrics_list):
         print("\nPlease wait around 30 seconds after all the executions have completed")
     else:
         for i in range(len(metrics_list)):
-            print("TIMESTAMP: " + str(metrics_list[i][0]))
+            print("TIMESTAMP:        " + str(metrics_list[i][0]))
             print("DURATION:         " + str(metrics_list[i][1][0]) + " " + str(metrics_list[i][1][1]))
             print("MAX MEMORY USED:  " + str(metrics_list[i][2][0]) + " " + str(metrics_list[i][2][1]))
             if (i + 1) < len(metrics_list):

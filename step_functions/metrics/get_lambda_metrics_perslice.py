@@ -13,7 +13,8 @@ def get_metrics():
 
     response = logs_client.filter_log_events(
         logGroupName='/aws/lambda/' + sfn_constants.FUNCTION_NAME,
-        logStreamNamePrefix=utils.get_today_date(),
+        # logStreamNamePrefix=utils.get_today_date(),
+        logStreamNamePrefix="2023/05/09",
         filterPattern='REPORT',
     )
 
@@ -53,11 +54,11 @@ def print_metrics(durations_list, memories_list):
         for i in range(len(durations_list)):
             print("\n-----------------------------------")
             print("-----------------------------------")
-            print("EXECUTION:        " + str(i))
+            print("EXECUTION:        " + str(i + 1))
             print("-----------------------------------")
             for j in range(len(durations_list[i])):
                 print("-----------------------------------")
-                print("SLICE:            " + str(j))
+                print("SLICE:            " + str(j + 1))
                 print("DURATION:         " + str(durations_list[i][j][0]) + " " + str(durations_list[i][j][1]))
                 #print("BILLED DURATION:  " + str(metrics_list[i][3][0]) + " " + str(metrics_list[i][3][1]))
                 print("MAX MEMORY USED:  " + str(memories_list[i][j][0]) + " " + str(memories_list[i][j][1]))
