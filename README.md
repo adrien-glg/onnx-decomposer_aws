@@ -1,49 +1,27 @@
 # onnx-decomposer_aws
 
-## Package size conformity check
+## Conformity check: Check package size violation
 
-To perform package size conformity check, please follow these steps: 
+To perform the conformity check **Check package size violation**, please follow these steps: 
 [README_packagesize.md](README_packagesize.md)
 
 ## Initial configuration
 
-First, make sure you have created the folder `lambda_code/projects/<projectname>` with these 3 project configuration files:
+If not already done, configure the following files as needed:       
 - `lambda_code/projects/<projectname>/<projectname>_config.ini`
-- `lambda_code/projects/<projectname>/<projectname>_lambda.py`
 - `lambda_code/projects/<projectname>/<projectname>_lambda_requirements.txt`
+- `lambda_code/projects/<projectname>/<projectname>_lambda_steps.py`
 
-Then, you need to configure the following 3 files as needed:
+Then, configure the following files as needed:
 - `lambda_code/general_config.ini`
 - `lambda_scripts/project.config`
 - `lambda_scripts/lambda_config/lambda_<projectname>.config`
 
-Finally, create the folder `models/<projectname>` and insert the input file(s).
+Finally, copy the input file(s) to the folder `models/<projectname>`.
 
 ## Lambda function deployment
 
-Change directory:
-```bash
-cd lambda_scripts
-```
-
-Create a Python Virtual Environment (venv):
-```bash
-./create_python_venv.sh
-```
-
-You need to activate the virtual environment with `source venv/bin/activate` for the next steps.       
-You can deactivate the virtual environment with `deactivate`.
-
-Create the deployment Lambda package:
-```bash
-./make_lambda_package.sh
-```
-
-Only if needed, once the package has been created a first time, you can easily apply code modifications with:                
-<sub>NB: This command's purpose is only to save some time compared to making the Lambda package from scratch again.</sub>
-```bash
-./modify_code_only.sh
-```
+[test_link](README_packagesize.md#making-lambda-deployment-package)
 
 Deploy the Lambda function on AWS:
 ```bash
@@ -93,6 +71,10 @@ python3 execute_workflow_sync.py
 - Asynchronously (only starts execution, does not wait for the results):
 ```bash
 python3 execute_workflow_async.py [number_of_concurrent_executions]
+```
+You can run multiple batches of executions separated by 5-second pauses with:
+```bash
+python3 execute_workflow_async.py [number_of_executions_batch1] [number_of_executions_batch2] [...]
 ```
 <sub>NB: By default on AWS, concurrent executions quota for Lambda might be set to 10.
 You can request a quota increase on this page: https://console.aws.amazon.com/servicequotas/home </sub>
