@@ -15,7 +15,12 @@ def get_data_from_file(filepath):
 
 
 def get_state_machine_arn():
-    return get_data_from_file(sfn_constants.STATE_MACHINE_ARN_FILE)
+    full_arn = get_data_from_file(sfn_constants.STATE_MACHINE_ARN_FILE)
+    term = "stateMachine:"
+    end_index = full_arn.index(term) + len(term)
+    arn_prefix = full_arn[:end_index]
+    final_arn = arn_prefix + sfn_constants.STATE_MACHINE_NAME
+    return final_arn
 
 
 def get_execution_arn():
@@ -28,9 +33,11 @@ def get_today_date():
     return today_date
 
 
-def get_duration(message, billed=False):
-    if billed:
+def get_duration(message, duration_type="basic"):
+    if duration_type == "billed":
         term = 'Billed Duration: '
+    elif duration_type == "init":
+        term = 'Init Duration: '
     else:
         term = 'Duration: '
     start_index = message.find(term) + len(term)

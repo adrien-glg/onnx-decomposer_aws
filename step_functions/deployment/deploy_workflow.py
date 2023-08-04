@@ -12,6 +12,8 @@ lambda_client = boto3.client('lambda')
 iam_client = boto3.client('iam')
 logs_client = boto3.client('logs')
 
+print('Deploying Step Functions workflow...\n')
+
 with open(sfn_constants.EVENT0) as event0_file:
     event0_data = json.load(event0_file)
 
@@ -89,3 +91,6 @@ response = sfn_client.create_state_machine(
 utils.save_to_file(response['stateMachineArn'], sfn_constants.STATE_MACHINE_ARN_FILE)
 
 pprint.pprint(response)
+
+if response['ResponseMetadata']['HTTPStatusCode'] == 200:
+    print('\nDeployed Step Functions workflow successfully')

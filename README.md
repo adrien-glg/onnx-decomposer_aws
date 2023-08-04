@@ -61,27 +61,27 @@ Create a role for Step Functions operations (you only need to run this command o
 ```bash
 python3 grant_permissions.py
 ```
-If you get an error warning about `"Role with name StepFunctionLambdaBasicExecution already exists"`, you can ignore it.
+If you get the error `"Role with name StepFunctionLambdaBasicExecution already exists"`, you can ignore it.
 
 Deploy the workflow:
 ```bash
 python3 deploy_workflow.py
 ```
 
-Execute the workflow:
+Run inferences by executing the workflow:
 - Synchronously (waits for the results):
 ```bash
 python3 execute_workflow_sync.py
 ```
-- Asynchronously (only starts execution, does not wait for the results):
+- Asynchronously (only starts the execution, does not wait for the results):
 ```bash
 python3 execute_workflow_async.py [number_of_concurrent_executions]
 ```
-You can run multiple batches of executions separated by 5-second pauses with:
+You can run multiple batches of executions separated by 30-second pauses with:
 ```bash
 python3 execute_workflow_async.py [number_of_executions_batch1] [number_of_executions_batch2] [...]
 ```
-<sub>NB: By default on AWS, concurrent executions quota for Lambda might be set to 10.
+<sub>NB: By default on AWS, the concurrent executions quota for Lambda might be set to 10.
 You can request a quota increase on this page: https://console.aws.amazon.com/servicequotas/home </sub>
 
 ## Metrics

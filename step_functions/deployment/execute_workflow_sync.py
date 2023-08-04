@@ -11,7 +11,8 @@ sfn_client = boto3.client('stepfunctions')
 state_machine_arn = utils.get_state_machine_arn()
 
 print("STATE MACHINE ARN: " + state_machine_arn)
-print("\nPlease wait while the execution is running...\n")
+print("\nStarting inference...")
+print("Please wait while the execution is running...\n")
 
 response = sfn_client.start_sync_execution(
     stateMachineArn=state_machine_arn,
@@ -22,9 +23,13 @@ utils.save_to_file(response['executionArn'], sfn_constants.EXECUTION_ARN_FILE)
 
 if response['status'] == 'FAILED':
     pprint.pprint(response)
-    print("\nThe execution has failed")
+    print("\nInference failed")
 elif response['status'] == 'SUCCEEDED':
-    pprint.pprint(response['output'])
-    print("\nThe execution has succeeded")
+    # pprint.pprint(response['output'])
+    output = response['output']
+    output_json = json.loads(output)
+    print("RESULTS:")
+    print(output_json["result"])
+    print("\nInference successful")
 else:
     pprint.pprint(response)

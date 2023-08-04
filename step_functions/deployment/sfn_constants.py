@@ -23,15 +23,17 @@ METRICS_FOLDER = "../saved_metrics/" + PROJECT_NAME + "/"
 METRICS_FILE = METRICS_FOLDER + FUNCTION_NAME + '_executions.csv'
 METRICS_FILE_SLICES = METRICS_FOLDER + FUNCTION_NAME + '_perslice.csv'
 METRICS_FILE_TIMESTAMPS = METRICS_FOLDER + FUNCTION_NAME + '_timestamps.csv'
+METRICS_FILE_INITDURATIONS = METRICS_FOLDER + FUNCTION_NAME + '_initdurations.csv'
 TOTAL_TIME_FILE = PROJECT_NAME + '_total_exec_times.csv'
 TOTAL_TIME_FILEPATH = METRICS_FOLDER + PROJECT_NAME + '_total_exec_times.csv'
-DURATION_TAG = 'Duration (ms)'
+DURATION_TAG = 'Execution time per slice (ms)'
 BILLED_DURATION_TAG = 'Billed duration (ms)'
 USED_MEMORY_TAG = 'Max memory used (MB)'
+INIT_DURATION_TAG = 'Init duration (ms)'
 TOTAL_TIME_TAG = 'Total execution time average (ms)'
-CSV_HEADERS = ['Execution', 'Slice', DURATION_TAG, USED_MEMORY_TAG]
+CSV_HEADERS = ['Execution number', 'Slice', DURATION_TAG, USED_MEMORY_TAG]
 CSV_HEADERS_TIMESTAMPS = ['Timestamp (ms)', DURATION_TAG, USED_MEMORY_TAG]
 TOTAL_TIME_HEADERS = ['Function', TOTAL_TIME_TAG]
-MARKERS = ["x", "+", "1", ".", "*", "o", "v", "s", "p", "^", "<", ">"]
+MARKERS = ["+", "x", "1", ".", "*", "^", "<", ">", "v", "s", "p", "o"]
 
 
