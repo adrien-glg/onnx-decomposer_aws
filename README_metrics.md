@@ -6,8 +6,14 @@ export PYTHONPATH=$PYTHONPATH:"$PWD":"$PWD/lambda_code"
 cd step_functions/metrics
 ```
 
+There are 3 modes available to save metrics:
+- `executions`
+- `perslice`
+- `timestamps`
+
+Save metrics:
 ```bash
-python3 save_lambda_metrics.py  # TODO
+python3 save_lambda_metrics.py <mode>
 ```
 
 ```bash

@@ -3,10 +3,9 @@ import boto3
 from step_functions.deployment import sfn_constants
 from step_functions.deployment import utils
 
-logs_client = boto3.client('logs')
-
 
 def get_metrics():
+    logs_client = boto3.client('logs')
     response = logs_client.filter_log_events(
         logGroupName='/aws/lambda/' + sfn_constants.FUNCTION_NAME,
         logStreamNamePrefix=utils.get_today_date(),
@@ -43,5 +42,6 @@ def print_metrics(metrics_list):
                 print("-----------------------------------")
 
 
-metrics, metrics_with_unit = get_metrics()
-print_metrics(metrics_with_unit)
+if __name__ == '__main__':
+    metrics, metrics_with_unit = get_metrics()
+    print_metrics(metrics_with_unit)

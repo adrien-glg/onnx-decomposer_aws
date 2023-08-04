@@ -4,11 +4,6 @@ from datetime import datetime, timedelta
 from step_functions.deployment import utils
 
 
-cloudwatch_client = boto3.client('cloudwatch')
-
-state_machine_arn = utils.get_state_machine_arn()
-
-
 def get_total_exec_times():
     yesterday = datetime.now() - timedelta(days=1)
 
@@ -35,6 +30,9 @@ def print_total_exec_times(execution_times):
         print(str(time) + " ms")
 
 
-print("STATE MACHINE ARN: " + state_machine_arn + "\n")
-exec_times = get_total_exec_times()
-print_total_exec_times(exec_times)
+if __name__ == '__main__':
+    cloudwatch_client = boto3.client('cloudwatch')
+    state_machine_arn = utils.get_state_machine_arn()
+    print("STATE MACHINE ARN: " + state_machine_arn + "\n")
+    exec_times = get_total_exec_times()
+    print_total_exec_times(exec_times)

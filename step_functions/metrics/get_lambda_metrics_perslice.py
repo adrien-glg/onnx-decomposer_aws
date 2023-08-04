@@ -3,10 +3,9 @@ import boto3
 from step_functions.deployment import sfn_constants
 from step_functions.deployment import utils
 
-logs_client = boto3.client('logs')
-    
 
 def get_metrics():
+    logs_client = boto3.client('logs')
     response = logs_client.filter_log_events(
         logGroupName='/aws/lambda/' + sfn_constants.FUNCTION_NAME,
         logStreamNamePrefix=utils.get_today_date(),
@@ -58,5 +57,6 @@ def print_metrics(durations_list, memories_list):
                 print("MAX MEMORY USED:  " + str(memories_list[i][j][0]) + " " + str(memories_list[i][j][1]))
 
 
-durations, durations_with_units, memories, memories_with_units = get_metrics()
-print_metrics(durations_with_units, memories_with_units)
+if __name__ == '__main__':
+    durations, durations_with_units, memories, memories_with_units = get_metrics()
+    print_metrics(durations_with_units, memories_with_units)
