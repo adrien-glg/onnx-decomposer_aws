@@ -11,13 +11,16 @@ def get_csv_filenames(mode):
         filenames_list = [file for file in filenames_list if "perslice" in file]
     elif mode == "timestamps":
         filenames_list = [file for file in filenames_list if "timestamps" in file]
+    elif mode == "initdurations":
+        filenames_list = [file for file in filenames_list if "initdurations" in file]
     return filenames_list
 
 
 def get_label(filename):
     number_of_slices = filename.split('_')[1]
+    number_of_slices = str(int(number_of_slices))
     if number_of_slices == "1":
-        label = number_of_slices + " slice"
+        label = "Non-sliced model"
     else:
         label = number_of_slices + " slices"
     return label

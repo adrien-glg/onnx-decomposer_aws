@@ -1,17 +1,12 @@
 import boto3
 from datetime import datetime, timedelta
-import pprint
 
 from step_functions.deployment import utils
 
+
 cloudwatch_client = boto3.client('cloudwatch')
-# cloudwatch = boto3.resource('cloudwatch')
-# metric = cloudwatch.Metric('namespace','name')
 
 state_machine_arn = utils.get_state_machine_arn()
-print("STATE MACHINE ARN: " + state_machine_arn + "\n")
-
-# response = cloudwatch_client.list_metrics()
 
 
 def get_total_exec_times():
@@ -30,17 +25,16 @@ def get_total_exec_times():
         EndTime=datetime.now()
     )
 
-    exec_times = response['MetricDataResults'][0]['Values']
-    return exec_times
+    execution_times = response['MetricDataResults'][0]['Values']
+    return execution_times
 
 
-def print_total_exec_times(exec_times):
-    # pprint.pprint(response)
-    print("AVG(ExecutionTime):")
-    print(exec_times)
+def print_total_exec_times(execution_times):
+    print("TOTAL EXECUTION TIME AVERAGES:")
+    for time in execution_times:
+        print(str(time) + " ms")
 
 
+print("STATE MACHINE ARN: " + state_machine_arn + "\n")
 exec_times = get_total_exec_times()
 print_total_exec_times(exec_times)
-
-
