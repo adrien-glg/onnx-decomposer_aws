@@ -7,4 +7,4 @@ PROJECT_NAME = config_parser.get('project', 'project_name')
 NUMBER_OF_SLICES = config_parser.getint('project', 'number_of_slices')
 
 PACKAGE_FOLDER = "../packages/" + PROJECT_NAME + "/"
-PACKAGE_PATH = PACKAGE_FOLDER + PROJECT_NAME + "_" + str(NUMBER_OF_SLICES) + "_slices.zip"
+PACKAGE_PATH = PACKAGE_FOLDER + PROJECT_NAME + "_" + str(NUMBER_OF_SLICES).zfill(2) + "_slices.zip"

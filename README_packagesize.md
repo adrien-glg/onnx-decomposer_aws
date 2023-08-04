@@ -3,15 +3,14 @@
 ## Initial configuration
 
 If not already done, configure the following files as needed:       
-<sub>NB: Since we are only testing package size, the configuration of `NUMBER_OF_SLICES` and `S3_BUCKET` are not
+<sub>NB: Since we are only testing the package size, the configuration of `NUMBER_OF_SLICES` and `S3_BUCKET` are not
 required here. You can configure them later.</sub>
 - `lambda_code/projects/<projectname>/<projectname>_config.ini`
 - `lambda_code/projects/<projectname>/<projectname>_lambda_requirements.txt`
 - `lambda_code/projects/<projectname>/<projectname>_lambda_steps.py`
 
-Then, configure the following files as needed:       
-<sub>NB: Since we are only testing package size, the configuration of `NUMBER_OF_SLICES`, `S3_BUCKET`, 
-`EXECUTION_TIMEOUT` and `FUNCTION_MEMORY` are not required here. You can configure them later.</sub>
+Then, configure the following files as needed: 
+<sub>NB: Again, no need to configure `NUMBER_OF_SLICES`.</sub>
 - `lambda_code/general_config.ini`
 - `lambda_scripts/project.config`
 

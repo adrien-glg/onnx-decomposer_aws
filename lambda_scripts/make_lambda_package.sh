@@ -36,4 +36,4 @@ mv package.zip ${ZIP_PACKAGE}
 
 rm -r package
 
-echo; echo ${ZIP_PACKAGE} "successfully created"
+echo; echo "Created successfully Lambda deployment package '" ${ZIP_PACKAGE} "'"

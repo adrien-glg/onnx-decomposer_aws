@@ -25,5 +25,8 @@ mv package.zip ${ZIP_PACKAGE}
 
 rm -r package
 
+echo; echo "Modified successfully Lambda deployment package '" ${ZIP_PACKAGE} "'"
+
+
 
 
