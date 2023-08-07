@@ -27,7 +27,7 @@ def write_metrics_perslice(duration_list, memory_list):
 
 
 if __name__ == '__main__':
-    error_message = "Please enter a correct mode as argument: executions, perslice, timestamps"
+    error_message = "Please enter a correct mode as argument: executions, timestamps, perslice"
     if len(sys.argv) != 2:
         raise Exception(error_message)
     else:
@@ -38,15 +38,15 @@ if __name__ == '__main__':
             file = sfn_constants.METRICS_FILE
             metrics = get_lambda_metrics_executions.get_metrics()[0]
             write_metrics(file, sfn_constants.CSV_HEADERS_EXECUTIONS, metrics)
+        elif mode == "timestamps":
+            file = sfn_constants.METRICS_FILE_TIMESTAMPS
+            metrics = get_lambda_metrics_timestamps.get_metrics()[0]
+            write_metrics(file, sfn_constants.CSV_HEADERS_TIMESTAMPS, metrics)
         elif mode == "perslice":
             file = sfn_constants.METRICS_FILE_PERSLICE
             metrics = get_lambda_metrics_perslice.get_metrics()
             durations, memories = metrics[0], metrics[2]
             write_metrics_perslice(durations, memories)
-        elif mode == "timestamps":
-            file = sfn_constants.METRICS_FILE_TIMESTAMPS
-            metrics = get_lambda_metrics_timestamps.get_metrics()[0]
-            write_metrics(file, sfn_constants.CSV_HEADERS_TIMESTAMPS, metrics)
         else:
             raise Exception(error_message)
         print("Saved metrics successfully to " + file)
