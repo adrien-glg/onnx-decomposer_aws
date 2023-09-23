@@ -37,7 +37,7 @@ A local execution will upload to AWS S3 the ONNX slices generated during the mod
 will generate the file `events/event0.json`.    
 :warning: Repeat the above step every time you change the project or the number of slices.
 
-To invoke the Lambda function (for the first layer, `layer_index` is `0`):
+To invoke the Lambda function (for the first layer, `layer_index` is `0`):    
 <sub>NB: Run this command for each layer one by one. Run it as many times as there are layers</sub>.
 ```bash
 ./invoke_lambda_function.sh -l <layer_index>
