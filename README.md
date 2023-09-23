@@ -34,7 +34,7 @@ Deploy the Lambda function on AWS:
 Before invoking the Lambda function, make sure you have run the code locally with the same project and the same
 number of slices.       
 A local execution will upload to AWS S3 the ONNX slices generated during the model decomposition and
-will generate the file `events/event0.json`.
+will generate the file `events/event0.json`.    
 :warning: Repeat the above step every time you change the project or the number of slices.
 
 To invoke the Lambda function (for the first layer, `layer_index` is `0`):
@@ -48,7 +48,7 @@ To invoke the Lambda function (for the first layer, `layer_index` is `0`):
 Before starting an inference, make sure you have run the code locally with the same project and the same
 number of slices.       
 A local execution will upload to AWS S3 the ONNX slices generated during the model decomposition and
-will generate the file `events/event0.json`.
+will generate the file `events/event0.json`.    
 :warning: Repeat the above step every time you change the project or the number of slices.
 
 From the `root` of the project (`onnx-decomposer_aws` folder), run the following command:
