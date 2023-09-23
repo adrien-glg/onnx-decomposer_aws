@@ -9,7 +9,7 @@ required here. You can configure them later.</sub>
 - `lambda_code/projects/<projectname>/<projectname>_lambda_requirements.txt`
 - `lambda_code/projects/<projectname>/<projectname>_lambda_steps.py`
 
-Then, configure the following files as needed: 
+Then, configure the following files as needed:     
 <sub>NB: Again, no need to configure `NUMBER_OF_SLICES`.</sub>
 - `lambda_code/general_config.ini`
 - `lambda_scripts/project.config`
