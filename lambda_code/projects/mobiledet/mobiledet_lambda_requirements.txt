@@ -1,4 +1,4 @@
 numpy
-onnxruntime
+onnxruntime==1.15.1
 onnx
 protobuf==3.20.2

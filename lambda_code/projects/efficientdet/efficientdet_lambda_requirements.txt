@@ -1,6 +1,6 @@
 numpy
 onnx
-onnxruntime
+onnxruntime==1.15.1
 Pillow
 protobuf==3.20.2
 
