@@ -115,4 +115,9 @@ You can request a quota increase on this page: https://console.aws.amazon.com/se
 
 ## Metrics
 
-See [README_metrics.md](README_metrics.md)
+For metrics collection, see: [README_metrics.md](README_metrics.md)
+
+## References
+
+This project includes code and content from the following sources:
+- [tensorflow-onnx](https://github.com/onnx/tensorflow-onnx/)
