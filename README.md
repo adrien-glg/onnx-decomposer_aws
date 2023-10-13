@@ -61,7 +61,7 @@ Deploy the Lambda function on AWS:
 ## Serverless execution with manual testing
 
 Before invoking the Lambda function, make sure you have run the code locally with the same project and the same
-number of slices.       
+number of slices. These steps are described in the following repository: [onnx-decomposer_local](https://github.com/adrien-glg/onnx-decomposer_local).          
 A local execution will upload to AWS S3 the ONNX slices generated during the model decomposition and
 will generate the file `events/event0.json`.    
 :warning: Repeat the above step every time you change the project or the number of slices.
